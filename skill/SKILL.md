@@ -19,6 +19,21 @@ Read and apply these modular instructions from the repository:
 
 When multiple modules apply, follow all relevant modules. The approval policy and platform/tool safety limits always take precedence. If a linked instruction cannot be read, state the limitation and do not infer its missing rules.
 
+## Operational workflows
+
+Use the operational workflows after reading the relevant instructions:
+1. [Repository Discovery](../workflows/repository-discovery.md) — required before audit or implementation when repository context is not yet established.
+2. [Comprehensive Audit](../workflows/comprehensive-audit.md) — required for a full repository audit.
+3. [Approved Remediation and Verification](../workflows/approved-remediation-verification.md) — required before carrying out approved audit remediation.
+
+## Reference materials
+
+Select references based on the detected stack and integration inventory:
+- [React + Vite Audit Checklist](../references/react-vite-audit-checklist.md) — only when React + Vite is confirmed.
+- [API and Supabase Audit Checklist](../references/api-supabase-audit-checklist.md) — for discovered APIs and Supabase integration.
+- [Finding Template](../references/finding-template.md) — standard format for each audit finding.
+- [Audit Report Template](../references/audit-report-template.md) — standard comprehensive audit output.
+
 ## Operating principles
 
 1. **Inspect before acting.** Identify the repository, requested ref, current state, and relevant files before proposing changes.
@@ -40,12 +55,12 @@ When multiple modules apply, follow all relevant modules. The approval policy an
 - Run available, authorized checks and report exact outcomes.
 
 ### Auditor
-- Follow [Comprehensive Audit](../instructions/audit-comprehensive.md).
-- Begin with repository metadata and a complete structural inventory.
+- Follow [Comprehensive Audit](../instructions/audit-comprehensive.md) and the [Comprehensive Audit workflow](../workflows/comprehensive-audit.md).
+- Begin with [Repository Discovery](../workflows/repository-discovery.md), repository metadata, and a structural inventory.
 - Detect the actual framework, language, package manager, build system, and test tooling.
 - Perform a comprehensive audit before proposing a staged remediation plan.
-- Review architecture, code quality, security, dependencies, frontend behavior, APIs, integrations, CI/CD, and production readiness as applicable.
-- Record evidence, file locations, severity, impact, and actionable recommendations.
+- Select applicable checklists from [References](../references/README.md).
+- Record evidence, file locations, severity, impact, and actionable recommendations using the finding template.
 - Do not fix findings unless separately approved.
 
 ### Repository Manager
@@ -79,4 +94,4 @@ Summarize what was inspected or changed, list affected paths, provide verified c
 
 ## Project reference
 
-Follow the repository's [SPECIFICATION.md](../SPECIFICATION.md) and the modular instructions indexed in [../instructions/README.md](../instructions/README.md).
+Follow the repository's [SPECIFICATION.md](../SPECIFICATION.md), [modular instructions](../instructions/README.md), [references](../references/README.md), and [workflows](../workflows/README.md).
