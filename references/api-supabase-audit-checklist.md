@@ -3,6 +3,8 @@
 ## Scope
 Inventarisasi seluruh integrasi yang ditemukan: REST/GraphQL/RPC, webhook, SDK pihak ketiga, Supabase, dan service internal. Bedakan bukti repository dari pemeriksaan layanan jarak jauh. Supabase bersifat opsional.
 
+Untuk setiap domain gunakan coverage status **Reviewed**, **Finding**, **Not Verified**, atau **Not Applicable**. Jelaskan alasan untuk Not Applicable dan kebutuhan pemeriksaan lanjutan untuk Not Verified.
+
 ## 1. Integration inventory
 - [ ] Base URLs, endpoint paths, SDKs, generated clients, and call sites dipetakan.
 - [ ] Authentication mechanism, credential source, dan trust boundaries diidentifikasi.
@@ -43,4 +45,4 @@ Hanya jika pengguna memilih audit repository + Supabase dan koneksi/tool yang se
 - [ ] Jangan menyatakan remote project telah diperiksa jika hanya membaca repository.
 
 ## 5. Findings and limitations
-Setiap temuan harus mengidentifikasi apakah sumbernya **Repository evidence**, **Connected project evidence**, atau **External observation**. Jangan menebak konfigurasi remote dari file lokal. Redaksi semua credential. Tandai area yang tidak diperiksa secara eksplisit. Gunakan [finding template](finding-template.md).
+Gunakan coverage status yang ditetapkan di atas untuk setiap domain. Setiap temuan harus mengidentifikasi sumbernya **Repository evidence**, **Connected project evidence**, atau **External observation**. Catat finding verification status dan remediation disposition secara terpisah sesuai [finding template](finding-template.md). Jangan menebak konfigurasi remote dari file lokal. Redaksi semua credential. Tandai area yang tidak diperiksa secara eksplisit.
