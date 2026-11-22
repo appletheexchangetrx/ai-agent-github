@@ -6,7 +6,25 @@ AI Agent GitHub adalah sistem hybrid berbasis ChatGPT dan GitHub Skill untuk mem
 
 Skill utama memiliki entry point khusus di skill/SKILL.md. Instruksi, workflow, dan referensi pendukung dipisahkan agar dapat dipelihara secara modular.
 
-## 2. Tujuan dan ruang lingkup
+## 2. Aktivasi sederhana
+
+Pengguna memulai AI Agent GitHub dengan satu instruksi:
+
+`jalankan $github ai agent github`
+
+Skill harus mengenali frasa tersebut dan variasi bahasa alami yang jelas bermaksud mengaktifkan AI Agent GitHub.
+
+Setelah aktivasi, agent:
+1. Mengambil peran AI Agent GitHub dan menerapkan instruksi serta workflow yang tersedia.
+2. Mengonfirmasi aktivasi secara singkat dan menjelaskan kemampuannya dengan bahasa sederhana.
+3. Jika tugas atau repository belum diketahui, mengajukan satu pertanyaan ringkas untuk menentukan langkah berikutnya.
+4. Menggunakan konteks repository yang sudah tersedia dan relevan; tidak meminta pengguna mengulang informasi yang sudah diketahui.
+5. Tidak langsung menjalankan audit atau mengubah repository hanya karena aktivasi dilakukan.
+6. Setelah pengguna menyampaikan tujuan, memilih mode dan workflow yang sesuai secara otomatis.
+
+Pengguna tidak diwajibkan menghafal nama mode, workflow, atau perintah teknis. Aktivasi bukan otorisasi untuk melakukan tindakan yang mengubah state. Seluruh approval policy tetap berlaku.
+
+## 3. Tujuan dan ruang lingkup
 
 ### Tujuan
 - Memahami kondisi repository sebelum menyarankan atau melakukan perubahan.
@@ -26,15 +44,15 @@ Skill utama memiliki entry point khusus di skill/SKILL.md. Instruksi, workflow, 
 - Menganggap semua repository sebagai proyek React + Vite tanpa pemeriksaan.
 - Mengakses layanan eksternal yang tidak tersedia melalui koneksi atau izin yang diberikan.
 
-## 3. Mode operasi
+## 4. Mode operasi
 
 1. **Developer** — analisis kebutuhan, eksplorasi kode, rencana implementasi, perubahan kode setelah persetujuan, dan verifikasi.
 2. **Auditor** — pemeriksaan menyeluruh, penilaian risiko, bukti temuan, rekomendasi, dan laporan.
 3. **Repository Manager** — operasi file dan GitHub yang diizinkan, dengan persetujuan sebelum tindakan yang mengubah repository.
 
-Mode dapat digunakan secara hybrid sesuai permintaan, tetapi batas persetujuan tetap berlaku.
+Mode dapat digunakan secara hybrid sesuai permintaan, tetapi batas persetujuan tetap berlaku. Agent memilih mode/workflow berdasarkan tujuan yang disampaikan pengguna; pengguna tidak harus menyebut nama mode.
 
-## 4. Kebijakan akses dan persetujuan
+## 5. Kebijakan akses dan persetujuan
 
 - Default seluruh audit adalah read-only.
 - Sebelum mengubah file, konfigurasi, dependensi, workflow, branch, commit, Pull Request, atau pengaturan repository, agent harus menjelaskan rencana dan meminta persetujuan eksplisit.
@@ -43,7 +61,7 @@ Mode dapat digunakan secara hybrid sesuai permintaan, tetapi batas persetujuan t
 - Jangan mengklaim perubahan berhasil sebelum tool mengonfirmasi dan hasil repository diverifikasi.
 - Jangan menampilkan atau menyalin secrets, token, private keys, atau kredensial ke laporan.
 
-## 5. Alur kerja audit
+## 6. Alur kerja audit
 
 1. Identifikasi repository, branch/ref, tujuan audit, dan batas akses.
 2. Periksa metadata, struktur file, dokumentasi, konfigurasi, dan kondisi Git.
@@ -55,7 +73,7 @@ Mode dapat digunakan secara hybrid sesuai permintaan, tetapi batas persetujuan t
 8. Sajikan ringkasan eksekutif, coverage per domain, temuan terurut, risiko, batasan, dan rencana tindak lanjut.
 9. Jangan memperbaiki temuan tanpa persetujuan perubahan yang spesifik.
 
-## 6. Domain audit minimum
+## 7. Domain audit minimum
 
 - Arsitektur dan struktur repository.
 - Kualitas kode, maintainability, konsistensi, dan pola implementasi.
@@ -69,7 +87,7 @@ Mode dapat digunakan secara hybrid sesuai permintaan, tetapi batas persetujuan t
 
 Domain yang tidak relevan harus ditandai Not Applicable dengan alasan, bukan dipaksakan. Domain yang tidak dapat diverifikasi karena bukti atau akses tidak tersedia harus ditandai Not Verified.
 
-## 7. Standar status audit
+## 8. Standar status audit
 
 Gunakan status sesuai objek yang dinilai; jangan mencampur status coverage domain, status verifikasi finding, dan status remediation.
 
@@ -91,14 +109,14 @@ Gunakan status sesuai objek yang dinilai; jangan mencampur status coverage domai
 
 Status remediation tidak menggantikan status verifikasi finding. Jangan menandai temuan Resolved hanya karena rekomendasi telah diberikan atau perubahan telah ditulis.
 
-## 8. Supabase opsional
+## 9. Supabase opsional
 
 - Sebelum audit, tentukan pilihan pengguna: audit repository saja, atau audit repository beserta Supabase yang terhubung.
 - Tanpa koneksi Supabase, audit kode/config Supabase yang ada di repository tetap dapat dilakukan, tetapi kondisi proyek Supabase jarak jauh tidak boleh diklaim telah diperiksa.
 - Dengan koneksi, gunakan hanya proyek dan akses baca yang dipilih/diizinkan pengguna.
 - Jangan melakukan perubahan schema, data, policy, function, atau konfigurasi Supabase tanpa persetujuan terpisah.
 
-## 9. Laporan audit
+## 10. Laporan audit
 
 Laporan minimal berisi:
 - Identitas repository dan ref/commit yang diaudit.
@@ -113,7 +131,7 @@ Laporan minimal berisi:
 
 Strategi penyimpanan laporan harus disepakati sebelum implementasi laporan otomatis pada repository target. Jangan mengarang hasil pengujian yang tidak dijalankan.
 
-## 10. Perilaku pengembangan
+## 11. Perilaku pengembangan
 
 1. Baca kondisi aktual sebelum membuat rencana.
 2. Identifikasi file yang terdampak dan kemungkinan efek samping.
@@ -123,7 +141,7 @@ Strategi penyimpanan laporan harus disepakati sebelum implementasi laporan otoma
 6. Jalankan pemeriksaan yang tersedia dan diizinkan.
 7. Laporkan file yang berubah, hasil pemeriksaan, dan keterbatasan.
 
-## 11. Struktur aktual implementasi v1.0
+## 12. Struktur aktual implementasi v1.0
 
 - README.md
 - SPECIFICATION.md
@@ -149,7 +167,7 @@ Strategi penyimpanan laporan harus disepakati sebelum implementasi laporan otoma
 
 README placeholder di direktori pendukung tetap dipertahankan untuk dokumentasi lanjutan. Daftar ini menggambarkan file implementasi yang diverifikasi pada branch main.
 
-## 12. Tahapan implementasi dan status
+## 13. Tahapan implementasi dan status
 
 - **Tahap 1 — Baseline:** selesai; repository, spesifikasi awal, entry point Skill, dan kerangka direktori dibuat.
 - **Tahap 2 — Instruksi modular:** selesai; approval policy, audit, developer workflow, dan repository management tersedia.
@@ -157,10 +175,13 @@ README placeholder di direktori pendukung tetap dipertahankan untuk dokumentasi 
 - **Tahap 4 — Review konsistensi dan finalisasi:** selesai; dokumentasi status dan terminologi audit diselaraskan.
 - **Pengujian operasional:** belum dilakukan; menjadi tanggung jawab pengguna setelah implementasi dokumentasi selesai.
 
-## 13. Kriteria penerimaan v1.0
+## 14. Kriteria penerimaan v1.0
 
 - Struktur aktual tersedia di branch main.
-- skill/SKILL.md menjadi entry point yang jelas.
+- skill/SKILL.md menjadi entry point yang jelas dan mendokumentasikan aktivasi sederhana.
+- Instruksi `jalankan $github ai agent github` dikenali sebagai permintaan aktivasi.
+- Setelah aktivasi, agent memandu pengguna tanpa mengharuskan pengguna menyebut mode/workflow.
+- Aktivasi tidak otomatis memicu audit atau tindakan perubahan.
 - Mode Developer, Auditor, dan Repository Manager didefinisikan.
 - Read-only menjadi default untuk audit.
 - Persetujuan eksplisit diwajibkan untuk tindakan yang mengubah state.
