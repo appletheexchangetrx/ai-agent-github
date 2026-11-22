@@ -6,7 +6,7 @@ AI Agent GitHub adalah sistem hybrid berbasis ChatGPT dan GitHub Skill untuk mem
 
 Skill utama memiliki entry point khusus di skill/SKILL.md. Instruksi, workflow, dan referensi pendukung dipisahkan agar dapat dipelihara secara modular.
 
-## 2. Aktivasi sederhana
+## 2. Aktivasi dan pemilihan repository
 
 Pengguna memulai AI Agent GitHub dengan satu instruksi:
 
@@ -14,15 +14,25 @@ Pengguna memulai AI Agent GitHub dengan satu instruksi:
 
 Skill harus mengenali frasa tersebut dan variasi bahasa alami yang jelas bermaksud mengaktifkan AI Agent GitHub.
 
-Setelah aktivasi, agent:
-1. Mengambil peran AI Agent GitHub dan menerapkan instruksi serta workflow yang tersedia.
-2. Mengonfirmasi aktivasi secara singkat dan menjelaskan kemampuannya dengan bahasa sederhana.
-3. Jika tugas atau repository belum diketahui, mengajukan satu pertanyaan ringkas untuk menentukan langkah berikutnya.
-4. Menggunakan konteks repository yang sudah tersedia dan relevan; tidak meminta pengguna mengulang informasi yang sudah diketahui.
-5. Tidak langsung menjalankan audit atau mengubah repository hanya karena aktivasi dilakukan.
-6. Setelah pengguna menyampaikan tujuan, memilih mode dan workflow yang sesuai secara otomatis.
+### Alur wajib setelah aktivasi
 
-Pengguna tidak diwajibkan menghafal nama mode, workflow, atau perintah teknis. Aktivasi bukan otorisasi untuk melakukan tindakan yang mengubah state. Seluruh approval policy tetap berlaku.
+1. Mengambil daftar repository yang dapat diakses akun GitHub terautentikasi melalui konektor GitHub.
+2. Mengambil halaman berikutnya jika tersedia agar daftar tidak berhenti pada halaman pertama.
+3. Menampilkan daftar repository yang berhasil diambil, menggunakan owner/name dan default branch jika tersedia. Informasi visibility hanya ditampilkan jika disediakan konektor.
+4. Meminta pengguna memilih repository target. Jika hanya satu repository tersedia, tampilkan dan minta konfirmasi; jangan memilih diam-diam.
+5. Setelah dipilih, konfirmasi full repository name dan branch/ref target, kemudian periksa metadata dan kondisi aktual repository.
+6. Jika pengguna belum menyebutkan tugas, tanyakan secara ringkas apa yang ingin dikerjakan pada repository tersebut.
+7. Setelah tujuan diketahui, pilih mode dan workflow yang sesuai secara otomatis.
+
+### Batasan dan aturan pemilihan
+
+- Repository `appletheexchangetrx/ai-agent-github` adalah repository sumber Skill dan dokumentasinya, bukan target kerja default.
+- Repository sumber Skill hanya boleh menjadi target jika dipilih secara eksplisit oleh pengguna.
+- Jika GitHub belum terhubung, listing gagal, akses terbatas, atau pagination tidak dapat dituntaskan, jelaskan keterbatasannya. Jangan mengarang repository atau mengklaim daftar lengkap.
+- Gunakan hanya repository yang benar-benar dikembalikan oleh konektor atau secara eksplisit diberikan pengguna.
+- Aktivasi, listing, dan pemilihan repository bukan otorisasi untuk audit, perubahan, atau tindakan yang mengubah state.
+
+Pengguna tidak diwajibkan menghafal nama mode, workflow, atau perintah teknis. Seluruh approval policy tetap berlaku.
 
 ## 3. Tujuan dan ruang lingkup
 
