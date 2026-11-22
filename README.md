@@ -1,62 +1,63 @@
 # AI Agent GitHub
 
-AI Agent + GitHub Skill untuk membantu pengembangan, audit, dan pengelolaan repository secara terstruktur melalui integrasi GitHub di ChatGPT.
+AI Agent + GitHub Skill untuk pengembangan software, audit menyeluruh, dan pengelolaan repository melalui integrasi GitHub di ChatGPT.
 
 ## Aktivasi sederhana
 
-Untuk memulai, pengguna cukup memberikan instruksi:
-
 `jalankan $github ai agent github`
 
-Setelah aktif, AI Agent menggunakan koneksi GitHub untuk mengambil dan menampilkan daftar repository yang dapat diakses akun pengguna. Agent meminta pengguna memilih repository terlebih dahulu, lalu mengonfirmasi branch/ref sebelum memeriksa kondisi repository dan menjalankan tugas.
+Setelah aktif, agent mengambil daftar repository yang dapat diakses, meminta pengguna memilih target dan branch/ref, lalu menanyakan atau menjalankan tujuan yang dinyatakan. Aktivasi tidak otomatis memicu audit atau perubahan.
 
-Repository `appletheexchangetrx/ai-agent-github` adalah repository sumber Skill, bukan target kerja default. Repository tersebut hanya boleh menjadi target jika dipilih secara eksplisit oleh pengguna.
-
-Jika koneksi GitHub tidak tersedia atau daftar repository tidak dapat diambil secara lengkap, agent harus menjelaskan keterbatasannya dan meminta pengguna menghubungkan GitHub atau menyebut repository yang dimaksud. Agent tidak boleh mengarang daftar atau memilih repository secara diam-diam.
-
-Aktivasi dan pemilihan repository tidak otomatis menjalankan audit atau mengubah repository. Semua kebijakan read-only dan persetujuan eksplisit tetap berlaku.
+Repository `appletheexchangetrx/ai-agent-github` adalah sumber Skill, bukan target kerja default. Gunakan sebagai target hanya jika dipilih secara eksplisit. Jika listing GitHub gagal atau tidak lengkap, jelaskan keterbatasannya dan jangan mengarang daftar.
 
 ## Status
 
-- **Versi:** v1.0
-- **Status implementasi:** Implementasi struktur dan dokumentasi selesai; menunggu pengujian operasional oleh pengguna.
-- **Branch kerja:** main
+- **Versi:** v1.1
+- **Branch implementasi:** main
 - **Framework fokus awal:** React + Vite, dengan deteksi stack aktual.
-- **Supabase:** Integrasi dan audit proyek terhubung bersifat opsional.
+- **Supabase:** opsional.
+- **Model eksekusi:** autonomous setelah persetujuan scope; tindakan berisiko tinggi tetap memiliki approval gate tersendiri.
+- **Pengujian runtime Skill:** harus dilakukan pengguna; dokumentasi dan repository checks tidak membuktikan integrasi runtime ChatGPT telah diuji.
 
 ## Kapabilitas
 
-1. **Developer** — memahami kebutuhan, menganalisis repository, merencanakan, dan mengimplementasikan perubahan setelah persetujuan.
-2. **Auditor** — melakukan audit menyeluruh terhadap arsitektur, kualitas kode, keamanan, konfigurasi, dependensi, API, dan integrasi yang ditemukan.
-3. **Repository Manager** — membantu mengelola file dan operasi GitHub dengan persetujuan eksplisit.
+1. **Frontend Developer** — UI/UX, React, responsive design, component architecture, client state, accessibility, dan frontend testing.
+2. **Backend Developer** — API, server-side business logic, authentication, authorization, database, integrations, security, dan backend testing.
+3. **Fullstack Developer** — implementasi end-to-end lintas UI, API, business logic, database, dan integration testing.
+4. **Auditor** — comprehensive audit arsitektur, kualitas kode, keamanan, konfigurasi, dependensi, API, dan integrasi.
+5. **Repository Manager** — operasi file dan GitHub sesuai otorisasi.
 
-## Prinsip keselamatan
+Orchestrator memilih satu atau beberapa spesialisasi secara otomatis berdasarkan tujuan pengguna. Pengguna tidak perlu menghafal mode atau nama workflow.
 
-- Audit berjalan dalam mode read-only secara default.
-- Tidak ada perubahan file, konfigurasi, dependensi, Git, Pull Request, merge, deployment, atau release tanpa persetujuan eksplisit sesuai cakupan tindakan.
-- Temuan audit harus memisahkan bukti, status verifikasi, dampak, dan rekomendasi.
-- Supabase bersifat opsional; audit repository tetap dapat dilakukan tanpa koneksi Supabase.
-- Semua operasi GitHub harus diverifikasi dari hasil aktual, bukan diasumsikan berhasil.
-- Pengujian operasional belum diklaim selesai; pengujian tersebut akan dilakukan oleh pengguna.
+## Autonomous execution policy
 
-## Struktur dan dokumentasi
+- Agent melakukan discovery, analisis, pemilihan spesialisasi, perencanaan, implementasi dalam scope yang disetujui, testing, debugging, dan verifikasi secara mandiri.
+- Sebelum batch implementasi, agent menyajikan target repository/ref, daftar file/resource, perubahan, dampak, risiko, rollback, dan pemeriksaan; pengguna menyetujui scope tersebut.
+- Setelah scope disetujui, agent boleh menyelesaikan seluruh perubahan dalam scope tanpa meminta persetujuan per file.
+- Perubahan material di luar scope membutuhkan persetujuan tambahan.
+- Audit tetap read-only; temuan audit tidak otomatis diperbaiki.
+- Merge, deployment, release, production migration, destructive data operations, secrets changes, dan tindakan produksi/berisiko tinggi memerlukan persetujuan khusus.
+- Semua hasil tool dan state repository harus diverifikasi. Jangan mengklaim test atau perubahan berhasil tanpa bukti.
 
-- [Spesifikasi v1.0](SPECIFICATION.md) — tujuan, ruang lingkup, kebijakan, struktur aktual, dan kriteria penerimaan.
-- [Skill entry point](skill/SKILL.md) — instruksi utama, termasuk aktivasi sederhana.
-- [Modular instructions](instructions/README.md) — approval policy dan mode kerja.
-- [Workflows](workflows/README.md) — discovery, comprehensive audit, dan remediation.
-- [References](references/README.md) — checklist dan template audit.
+## Supabase optional
+
+Repository-only development/audit tetap dapat dilakukan tanpa koneksi Supabase. Jika Supabase ditemukan dan koneksi diaktifkan, periksa hanya project yang dipilih/diizinkan. Tanpa koneksi, klaim dibatasi pada source/config yang tersedia di repository. Perubahan remote schema, data, RLS, functions, atau settings membutuhkan approval khusus.
+
+## Dokumentasi
+
+- [Spesifikasi v1.1](SPECIFICATION.md)
+- [Main Skill entry point](skill/SKILL.md)
+- [Modular instructions](instructions/README.md)
+- [Specialized Skills](skills/README.md)
+- [Workflows](workflows/README.md)
+- [Audit references](references/README.md)
 
 ## Status tahapan
 
-- [x] Tahap 1 — Baseline repository.
-- [x] Tahap 2 — Instruksi modular.
-- [x] Tahap 3 — Referensi dan workflow.
-- [x] Tahap 4 — Review konsistensi dan finalisasi dokumentasi.
+- [x] Baseline v1.0 dan instruksi modular.
+- [x] Frontend, Backend, dan Fullstack specialization v1.1.
+- [x] Autonomous scope approval dan execution policy.
+- [x] Dokumentasi index dan cross-reference.
 - [ ] Pengujian operasional oleh pengguna.
 
-Implementasi v1.0 dinyatakan selesai pada tingkat struktur dan dokumentasi setelah seluruh file diverifikasi di branch main. Status ini tidak menyatakan bahwa runtime Skill, integrasi ChatGPT, atau perilaku operasional telah diuji.
-
-## Pengembangan
-
-Perubahan lanjutan dilakukan berdasarkan spesifikasi dan approval yang relevan. Jangan menganggap status implementasi selesai sebagai izin untuk melakukan perubahan, merge, deployment, atau release.
+Status implementasi dokumentasi tidak menyatakan bahwa runtime Skill, koneksi ChatGPT, atau perilaku operasional telah diuji.
