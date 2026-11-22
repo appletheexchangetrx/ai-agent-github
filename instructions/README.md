@@ -1,22 +1,25 @@
 # Instructions
 
-Instruksi modular untuk AI Agent GitHub. Entry point Skill utama berada di [../skill/SKILL.md](../skill/SKILL.md).
+Instruksi modular AI Agent GitHub. Main entry point: [../skill/SKILL.md](../skill/SKILL.md).
 
-## Modul inti
+## Core policies and workflows
 
-| Modul | Cakupan |
+| Document | Scope |
 |---|---|
-| [Approval Policy](approval-policy.md) | Kebijakan lintas-mode untuk persetujuan, read-only default, perlindungan data, dan verifikasi. |
-| [Comprehensive Audit](audit-comprehensive.md) | Discovery repository, audit menyeluruh, domain pemeriksaan, severity, bukti, dan laporan. |
-| [Developer Workflow](developer-workflow.md) | Intake kebutuhan, reconnaissance, perencanaan, implementasi, verifikasi, dan completion report. |
-| [Repository Management](repository-management.md) | Operasi file, branch, commit, Pull Request, merge, release, dan penanganan konflik. |
+| [Approval Policy](approval-policy.md) | Autonomous execution after scope approval, high-risk approval gates, security, verification. |
+| [General Developer Workflow](developer-workflow.md) | Shared development lifecycle and implementation standards. |
+| [Frontend Workflow](frontend-workflow.md) | UI, UX, responsive design, accessibility, client behavior, frontend tests. |
+| [Backend Workflow](backend-workflow.md) | APIs, server logic, auth, database, integrations, backend tests. |
+| [Fullstack Workflow](fullstack-workflow.md) | End-to-end work across application layers. |
+| [Comprehensive Audit](audit-comprehensive.md) | Repository discovery, audit domains, findings, severity, evidence, reports. |
+| [Repository Management](repository-management.md) | File operations, branches, commits, PRs, merge, release, conflicts. |
 
-## Aturan penggunaan
+## Usage
+1. Apply Approval Policy to every mode and operation.
+2. Use the general Developer Workflow for shared lifecycle requirements.
+3. Select Frontend, Backend, or Fullstack workflow based on task scope; combine them when needed.
+4. Use Comprehensive Audit for audit requests.
+5. Use Repository Management for GitHub operations.
+6. If instructions overlap, apply all relevant requirements and the stricter approval boundary.
 
-1. Baca [Approval Policy](approval-policy.md) sebagai kebijakan wajib untuk semua mode.
-2. Untuk audit, ikuti [Comprehensive Audit](audit-comprehensive.md).
-3. Untuk pekerjaan pengembangan, ikuti [Developer Workflow](developer-workflow.md).
-4. Untuk operasi GitHub, ikuti [Repository Management](repository-management.md).
-5. Jika beberapa mode digunakan bersamaan, terapkan seluruh modul yang relevan dan gunakan batas persetujuan yang paling ketat.
-
-Semua modul bersifat instruksi operasional. Spesifikasi produk tetap mengacu pada [../SPECIFICATION.md](../SPECIFICATION.md).
+Product specification: [../SPECIFICATION.md](../SPECIFICATION.md).
