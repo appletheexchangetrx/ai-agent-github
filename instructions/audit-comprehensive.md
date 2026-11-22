@@ -41,7 +41,7 @@ Jangan menganggap inventory yang terpotong sebagai lengkap. Catat pagination, ba
 
 ## 4. Domain audit wajib dipertimbangkan
 
-Nilai setiap domain sebagai Reviewed, Finding, Not Applicable, atau Not Verified.
+Nilai setiap domain menggunakan status **Reviewed**, **Finding**, **Not Verified**, atau **Not Applicable**. Untuk Not Applicable, catat alasan. Untuk Not Verified, jelaskan bukti, akses, atau pemeriksaan yang masih diperlukan.
 
 ### A. Repository dan arsitektur
 - Kejelasan struktur, batas modul, tanggung jawab, dan dependency direction.
@@ -112,22 +112,21 @@ Nilai setiap domain sebagai Reviewed, Finding, Not Applicable, atau Not Verified
 - Backup, recovery, migration safety, operational documentation.
 - Privacy/data handling and retention evidence where applicable.
 
-Domain yang tidak relevan harus diberi alasan N/A. Area yang memerlukan akses atau runtime yang tidak tersedia harus Not Verified.
-
 ## 5. Standar bukti temuan
 
 Setiap temuan harus memiliki:
 - ID unik dalam laporan.
 - Judul ringkas.
 - Severity: Critical, High, Medium, Low, Informational.
-- Status: Verified, Suspected, Not Verified, atau Not Applicable.
+- **Finding verification status:** Verified, Suspected, atau Not Verified.
+- **Remediation disposition:** Open, Accepted Risk, atau Resolved.
 - Lokasi: path file dan line/range bila benar-benar tersedia.
 - Bukti konkret: konfigurasi, kode, output tool, atau perilaku yang diamati.
 - Dampak dan skenario risiko yang masuk akal.
 - Rekomendasi perbaikan.
 - Cara verifikasi setelah perbaikan.
 
-Jangan mengarang line number, output, versi, CVE, test result, atau kondisi runtime. Jika bukti belum cukup, gunakan Suspected atau Not Verified dan jelaskan validasi yang diperlukan.
+Jangan mengarang line number, output, versi, CVE, test result, atau kondisi runtime. Jika bukti belum cukup, gunakan Suspected atau Not Verified dan jelaskan validasi yang diperlukan. Gunakan Resolved hanya setelah perubahan dan verifikasi didukung bukti. Accepted Risk memerlukan penerimaan risiko yang eksplisit; rekomendasi agent bukan penerimaan risiko.
 
 ## 6. Severity guidance
 
@@ -155,8 +154,8 @@ Gunakan struktur:
 1. Metadata repository, target ref, dan waktu audit.
 2. Scope, asumsi, akses, dan metode.
 3. Executive summary dan readiness assessment.
-4. Ringkasan status per domain.
-5. Temuan terurut menurut severity.
+4. Ringkasan coverage status per domain.
+5. Temuan terurut menurut severity dengan verification status dan remediation disposition terpisah.
 6. Strengths/positive controls.
 7. Not Verified dan keterbatasan.
 8. Prioritized remediation roadmap.
@@ -177,10 +176,10 @@ Readiness assessment harus dijelaskan dengan alasan dan bukan sekadar skor tanpa
 - [ ] Repository dan ref target teridentifikasi.
 - [ ] Tree dan file kunci diperiksa atau keterbatasannya dicatat.
 - [ ] Stack aktual dideteksi dari bukti.
-- [ ] Semua domain relevan dinilai.
+- [ ] Semua domain relevan dinilai dengan coverage status yang konsisten.
 - [ ] Integrasi API dan service dipetakan.
 - [ ] Cakupan Supabase dinyatakan secara eksplisit.
-- [ ] Temuan memiliki bukti dan severity yang beralasan.
-- [ ] Not Verified/N/A dijelaskan.
+- [ ] Temuan memiliki bukti, severity, verification status, dan remediation disposition.
+- [ ] Not Verified/Not Applicable dijelaskan.
 - [ ] Tidak ada perubahan state tanpa approval.
 - [ ] Laporan tidak mengklaim pemeriksaan atau test yang tidak dilakukan.
