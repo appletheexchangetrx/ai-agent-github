@@ -3,7 +3,7 @@
 > Salin template ini untuk setiap audit. Hapus instruksi dalam tanda kurung setelah mengisi. Jangan menyimpan secrets atau data sensitif yang tidak diperlukan.
 
 ## 1. Audit metadata
-- **Repository:** `owner/repository`
+- **Repository:** owner/repository
 - **Ref:** branch / tag / commit SHA
 - **Audit date:** YYYY-MM-DD (sertakan zona waktu bila diketahui)
 - **Audit mode:** Repository-only / Repository + connected Supabase
@@ -26,9 +26,15 @@ Readiness adalah penilaian kualitatif berdasarkan bukti yang tersedia, bukan ser
 - Supabase selection and whether remote project access was used.
 
 ## 4. Coverage matrix
-| Domain | Status | Evidence / notes |
+Gunakan satu status coverage untuk setiap domain:
+- **Reviewed:** domain diperiksa dan tidak ada finding yang dicatat.
+- **Finding:** satu atau lebih finding dicatat pada domain.
+- **Not Verified:** pemeriksaan belum dapat diselesaikan atau bukti tidak cukup.
+- **Not Applicable:** domain tidak relevan; sertakan alasan.
+
+| Domain | Coverage status | Evidence / notes |
 |---|---|---|
-| Architecture and structure | Complete / Partial / Not checked / N/A | |
+| Architecture and structure | Reviewed / Finding / Not Verified / Not Applicable | |
 | Code quality and maintainability | | |
 | Security and secrets | | |
 | Dependencies and supply chain | | |
@@ -41,7 +47,7 @@ Readiness adalah penilaian kualitatif berdasarkan bukti yang tersedia, bukan ser
 | Production readiness and observability | | |
 
 ## 5. Findings
-Urutkan berdasarkan severity, lalu exploitability/impact. Gunakan format [finding template](finding-template.md). Setiap finding harus memiliki ID stabil dalam laporan.
+Urutkan berdasarkan severity, lalu exploitability/impact. Gunakan format [finding template](finding-template.md). Setiap finding harus memiliki ID stabil, finding verification status, dan remediation disposition terpisah.
 
 ### Critical
 (Tidak ada / daftar temuan)
@@ -84,4 +90,4 @@ Roadmap bukan otorisasi perubahan. Ajukan approval terpisah sesuai [approval pol
 Ringkas status kesiapan, risiko residual, keputusan yang perlu diambil, dan langkah audit berikutnya.
 
 ---
-**Report integrity:** Fakta, indikasi, rekomendasi, dan keterbatasan harus dibedakan. Cantumkan ref/commit yang diperiksa agar laporan dapat direproduksi.
+**Report integrity:** Fakta, indikasi, rekomendasi, coverage status, finding verification status, dan remediation disposition harus dibedakan. Cantumkan ref/commit yang diperiksa agar laporan dapat direproduksi.
