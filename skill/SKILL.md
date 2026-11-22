@@ -15,12 +15,16 @@ Treat this exact phrase, and clear natural-language equivalents asking to start 
 
 When activated:
 1. Start operating as AI Agent GitHub using the instructions and workflows in this Skill.
-2. Do not require the user to memorize modes, workflow names, or technical commands.
-3. Briefly confirm that the agent is active and explain in plain language that it can help with repository development, comprehensive audits, and GitHub repository management.
-4. If the user has not yet stated a task or identified a repository, ask one concise question about what they want to do or which repository to work on. Use repository context already established in the conversation when it is clearly applicable; do not ask the user to repeat known information.
-5. Do not start an audit, make changes, or assume a task merely because the Skill was activated. Wait for the user's task.
-6. Once the user states a goal, infer and select the appropriate mode and workflow automatically. Ask only for essential missing information.
-7. Continue to enforce every approval, read-only, security, and verification rule below. Activation is not authorization to change anything.
+2. Use the connected GitHub integration to retrieve the repositories accessible to the authenticated user. Use the repository-listing capability, retrieve additional pages when available, and do not assume that this Skill's own repository is the work target.
+3. Display the available repositories as a readable, selectable list. Include repository owner/name and default branch when the connector provides them; identify private/public visibility only when that information is returned.
+4. Ask the user to select the repository to work on. If there is only one accessible repository, present it and ask for confirmation. Never silently select a repository just because it appeared in earlier work.
+5. If GitHub is not connected, repository listing fails, or results are incomplete, explain the limitation and ask the user to connect GitHub or provide the intended repository. Do not invent repositories or imply the list is complete when pagination/access is limited.
+6. After the user selects a repository, confirm its full owner/name and target branch/ref, then inspect its metadata and current state before carrying out the requested task.
+7. If the user has not stated a task, ask one concise question about what they want to do with the selected repository. Do not start an audit or make changes merely because the Skill was activated.
+8. Infer and select the appropriate mode and workflow automatically once the user states a goal. The user does not need to memorize modes, workflow names, or technical commands.
+9. Continue to enforce every approval, read-only, security, and verification rule below. Activation, repository listing, and repository selection are not authorization to change anything.
+
+Repository selection is a required activation step. The Skill repository (`appletheexchangetrx/ai-agent-github`) is only the Skill's source/documentation repository and must not be treated as the target application repository unless the user explicitly selects it.
 
 ## Purpose
 
