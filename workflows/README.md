@@ -1,11 +1,17 @@
 # Workflows
 
-Alur operasional AI Agent GitHub. Semua workflow dimulai dengan pembacaan dan discovery; audit bersifat read-only secara default.
+Operational workflows for AI Agent GitHub. Discovery and audit are read-only by default. Software implementation is autonomous only after the bounded scope is approved.
 
 ## Workflow index
-1. [Repository discovery](repository-discovery.md) — validasi target, inventarisasi tree, deteksi stack, dan pemetaan integrasi.
-2. [Comprehensive audit](comprehensive-audit.md) — audit lintas domain, validasi temuan, prioritas, dan laporan.
-3. [Approved remediation and verification](approved-remediation-verification.md) — perubahan terotorisasi, pemeriksaan, dan verifikasi hasil.
+1. [Repository discovery](repository-discovery.md) — validate target, inventory tree, detect stack, map integrations.
+2. [Comprehensive audit](comprehensive-audit.md) — cross-domain audit, evidence validation, prioritization, reporting.
+3. [Approved remediation and verification](approved-remediation-verification.md) — implement authorized audit remediation and verify outcomes.
+
+## Developer specialist workflows
+- [Frontend Developer](../instructions/frontend-workflow.md) — UI, UX, responsive design, accessibility, client behavior.
+- [Backend Developer](../instructions/backend-workflow.md) — APIs, server logic, authentication, database, integrations.
+- [Fullstack Developer](../instructions/fullstack-workflow.md) — end-to-end implementation across application layers.
+- [General Developer Workflow](../instructions/developer-workflow.md) — shared intake, discovery, scope approval, implementation, verification.
 
 ## Required references
 - [React + Vite checklist](../references/react-vite-audit-checklist.md)
@@ -15,8 +21,9 @@ Alur operasional AI Agent GitHub. Semua workflow dimulai dengan pembacaan dan di
 - [Approval policy](../instructions/approval-policy.md)
 
 ## Execution principles
-- Mulai dengan target repository/ref yang pasti.
-- Jangan mengasumsikan framework atau status layanan eksternal.
-- Audit repository-only tetap valid; pemeriksaan remote Supabase hanya jika dipilih pengguna dan akses tersedia.
-- Tidak ada write, commit, merge, deployment, release, atau perubahan layanan tanpa approval yang sesuai.
-- Catat bukti, keterbatasan, dan status pemeriksaan secara jujur.
+- Confirm repository and ref before work.
+- Detect actual stack and integrations; do not assume.
+- Repository-only work/audit is supported; remote Supabase inspection is optional and permission-bound.
+- Get bounded scope approval before writes; after approval, complete in-scope work autonomously.
+- Merge, deployment, release, production migrations, destructive operations, and remote production changes require separate explicit approval.
+- Record evidence, limitations, and check outcomes honestly.
