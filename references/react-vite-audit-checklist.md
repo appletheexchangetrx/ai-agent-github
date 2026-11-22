@@ -1,7 +1,7 @@
 # React + Vite Audit Checklist
 
 ## Purpose and applicability
-Gunakan checklist ini hanya setelah discovery mengonfirmasi React dan Vite. Catat versi, package manager, entry points, build scripts, dan test tooling aktual. Tandai area yang tidak relevan sebagai N/A beserta alasannya.
+Gunakan checklist ini hanya setelah discovery mengonfirmasi React dan Vite. Catat versi, package manager, entry points, build scripts, dan test tooling aktual. Untuk setiap domain, gunakan coverage status **Reviewed**, **Finding**, **Not Verified**, atau **Not Applicable**. Jika Not Applicable, catat alasannya; jika Not Verified, jelaskan pemeriksaan yang masih diperlukan.
 
 ## 1. Project structure and architecture
 - [ ] Entry point aplikasi, routing, layout, feature/module boundaries teridentifikasi.
@@ -64,4 +64,4 @@ Gunakan checklist ini hanya setelah discovery mengonfirmasi React dan Vite. Cata
 - [ ] Dokumentasi setup, env example, dan troubleshooting cukup.
 
 ## Evidence and result
-Untuk setiap temuan, catat path dan simbol/baris bila benar-benar tersedia, bukti ringkas yang tidak mengandung secret, dampak, severity, confidence, dan rekomendasi. Gunakan status **Verified**, **Suspected**, **Not checked**, atau **N/A**. Jangan menyatakan command berhasil jika tidak dijalankan. Lihat [finding template](finding-template.md) dan [audit report template](audit-report-template.md).
+Gunakan coverage status yang ditetapkan di atas untuk setiap domain. Catat finding terpisah menggunakan [finding template](finding-template.md), termasuk finding verification status dan remediation disposition. Jangan menyatakan command berhasil jika tidak dijalankan. Lihat [audit report template](audit-report-template.md).
