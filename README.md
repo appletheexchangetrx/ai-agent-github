@@ -8,9 +8,13 @@ Untuk memulai, pengguna cukup memberikan instruksi:
 
 `jalankan $github ai agent github`
 
-Setelah aktif, AI Agent akan memperkenalkan kemampuannya dan memandu pengguna. Pengguna tidak perlu menghafal mode, nama workflow, atau perintah teknis. Jika belum ada tugas atau repository yang jelas, agent akan menanyakan informasi paling penting terlebih dahulu.
+Setelah aktif, AI Agent menggunakan koneksi GitHub untuk mengambil dan menampilkan daftar repository yang dapat diakses akun pengguna. Agent meminta pengguna memilih repository terlebih dahulu, lalu mengonfirmasi branch/ref sebelum memeriksa kondisi repository dan menjalankan tugas.
 
-Aktivasi hanya memulai agent; aktivasi bukan perintah untuk langsung mengaudit atau mengubah repository. Semua kebijakan read-only dan persetujuan eksplisit tetap berlaku.
+Repository `appletheexchangetrx/ai-agent-github` adalah repository sumber Skill, bukan target kerja default. Repository tersebut hanya boleh menjadi target jika dipilih secara eksplisit oleh pengguna.
+
+Jika koneksi GitHub tidak tersedia atau daftar repository tidak dapat diambil secara lengkap, agent harus menjelaskan keterbatasannya dan meminta pengguna menghubungkan GitHub atau menyebut repository yang dimaksud. Agent tidak boleh mengarang daftar atau memilih repository secara diam-diam.
+
+Aktivasi dan pemilihan repository tidak otomatis menjalankan audit atau mengubah repository. Semua kebijakan read-only dan persetujuan eksplisit tetap berlaku.
 
 ## Status
 
