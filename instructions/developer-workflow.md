@@ -1,139 +1,82 @@
-# Developer Workflow Instructions
+# General Developer Workflow
 
-## 1. Tujuan
+## 1. Purpose
 
-Mengubah kebutuhan pengguna menjadi perubahan software yang terencana, terbatas, dapat ditinjau, dan dapat diverifikasi. Fokus awal React + Vite, tetapi selalu ikuti stack yang benar-benar ditemukan.
+Shared lifecycle for software implementation. Route specialized work to [Frontend](frontend-workflow.md), [Backend](backend-workflow.md), or [Fullstack](fullstack-workflow.md). Detect the actual stack; React + Vite is an initial focus, not an assumption.
 
-Seluruh tindakan tulis tunduk pada [approval-policy.md](approval-policy.md).
+All writes follow [approval-policy.md](approval-policy.md).
 
-## 2. Intake kebutuhan
+## 2. Task intake and routing
 
-Sebelum merencanakan implementasi, pahami:
-- Masalah atau outcome yang ingin dicapai.
-- Perilaku saat ini dan perilaku yang diharapkan.
-- Pengguna/aktor dan alur yang terdampak.
-- Batasan teknis, kompatibilitas, desain, aksesibilitas, dan performa.
-- Kriteria penerimaan.
-- Target repository dan branch/ref.
+Understand the desired outcome, current/expected behavior, actors, constraints, acceptance criteria, target repository, and branch/ref. Ask only clarifying questions that materially block safe implementation.
 
-Ajukan hanya pertanyaan klarifikasi yang benar-benar menghalangi pekerjaan. Jangan meminta ulang informasi yang sudah tersedia.
+Automatic routing:
+- UI, page, component, responsive behavior, client state, accessibility → Frontend.
+- API, server logic, authentication/authorization, database, integrations → Backend.
+- Feature/fix spanning frontend and backend or multiple layers → Fullstack.
+- Mixed scope may combine specialist workflows under one orchestrator and one acceptance plan.
 
 ## 3. Repository reconnaissance
 
-1. Periksa metadata, branch/ref, tree, dan status file relevan.
-2. Baca README, package manifest, lockfile, konfigurasi, dan dokumentasi terkait.
-3. Identifikasi framework, runtime, package manager, lint/test/build commands.
-4. Telusuri implementasi yang sudah ada sebelum membuat pola baru.
-5. Identifikasi komponen, service, API, database, dan integrasi yang terpengaruh.
-6. Periksa apakah ada perubahan terbaru yang dapat menyebabkan konflik.
-7. Catat asumsi dan hal yang belum diketahui.
+1. Inspect repository metadata, target ref, tree, and relevant file state.
+2. Read README, manifests, lockfiles, configuration, and relevant documentation.
+3. Detect framework, runtime, package manager, lint/test/build commands, API and database patterns.
+4. Trace existing implementation before introducing new patterns.
+5. Identify affected modules, services, API contracts, data stores, and integrations.
+6. Check for concurrent changes and record assumptions/unknowns.
 
-Jangan mengasumsikan perintah npm, yarn, pnpm, atau bun; gunakan package manager yang dibuktikan oleh lockfile dan dokumentasi proyek.
+Do not assume npm/yarn/pnpm/bun; use evidence from lockfiles and project documentation.
 
-## 4. Rencana implementasi
+## 4. Implementation plan
 
-Rencana harus menjelaskan:
-- Pendekatan teknis dan alasan pemilihan.
-- File yang akan dibuat/diubah/dihapus.
-- Alur data dan dampak pada API/state/schema jika relevan.
-- Perilaku UI termasuk loading, empty, success, error, dan disabled states.
-- Accessibility, responsive behavior, dan kompatibilitas.
-- Risiko regresi, security, dan performance.
-- Test/check yang akan dilakukan.
-- Hal yang tidak termasuk scope.
+Explain:
+- Technical approach and why it fits existing architecture.
+- Exact files/resources to create/update/delete.
+- Data flow and API/state/schema impacts.
+- User-visible behavior and loading/empty/success/error/disabled states where relevant.
+- Accessibility, responsive behavior, compatibility, and performance.
+- Security implications, risks, dependencies, and rollback.
+- Tests/checks and explicit exclusions.
 
-Pilih perubahan terkecil yang memenuhi acceptance criteria. Hindari refactor luas yang tidak diperlukan.
+Choose the smallest coherent change that meets acceptance criteria.
 
-## 5. Approval gate
+## 5. Approval and autonomous execution
 
-Sebelum menulis:
-1. Tampilkan rencana dan daftar path.
-2. Jelaskan apakah dependensi, konfigurasi, schema, atau layanan eksternal terpengaruh.
-3. Jelaskan risiko dan rollback.
-4. Minta persetujuan eksplisit.
-5. Jangan melakukan perubahan sampai disetujui.
+Before writes, present the bounded scope and verification plan and obtain explicit approval as defined in [approval-policy.md](approval-policy.md). After approval, autonomously complete all in-scope implementation, tests, debugging, and verification without per-file approval. Stop for additional approval if scope materially expands or a high-risk/production action is required.
 
-Jika implementasi menemukan kebutuhan baru di luar scope yang disetujui, berhenti dan minta persetujuan tambahan.
+## 6. Implementation standards
 
-## 6. Implementasi
+- Follow repository conventions and reuse existing components/services where appropriate.
+- Keep changes focused; avoid unrelated refactors and unnecessary dependencies.
+- Never add credentials or secrets to source.
+- Validate untrusted input at the correct trust boundary.
+- Enforce authorization on trusted server/database boundaries; client checks are not authorization.
+- Handle errors consistently without leaking sensitive internals.
+- Update docs/tests when behavior or setup changes.
+- Do not modify paths outside the approved scope.
 
-Setelah disetujui:
-- Ikuti konvensi repository.
-- Pertahankan perubahan tetap terfokus.
-- Gunakan pola dan komponen yang sudah ada bila sesuai.
-- Hindari menambah dependency jika kemampuan yang ada sudah memadai.
-- Jangan menambahkan secret atau credential ke source.
-- Validasi input di batas kepercayaan.
-- Tangani error secara konsisten tanpa membocorkan detail sensitif.
-- Perhatikan accessibility, semantic markup, keyboard support, dan responsive layout.
-- Update dokumentasi bila perilaku atau setup berubah.
-- Jangan mengubah file yang tidak termasuk scope tanpa approval.
+## 7. React + Vite considerations
 
-### React + Vite considerations
+When confirmed:
+- Follow existing component, hook, service, and domain boundaries.
+- Avoid side effects during render and follow Rules of Hooks.
+- Clean up effects and subscriptions.
+- Validate route params and external input.
+- Keep secrets out of client-exposed environment variables.
+- Use lazy loading/code splitting when justified.
+- Cover loading, error, empty, and success states.
+- Preserve established build and routing configuration unless the approved scope requires a change.
 
-Jika stack ini terdeteksi:
-- Pertahankan pemisahan komponen, hooks, services, dan domain logic sesuai arsitektur proyek.
-- Hindari side effect saat render.
-- Pastikan hooks mengikuti Rules of Hooks.
-- Kelola effect cleanup dan subscription lifecycle.
-- Validasi route params dan external input.
-- Hindari menaruh secret di variabel environment yang terekspos ke client.
-- Gunakan lazy loading/code splitting bila sesuai.
-- Pastikan UI menangani loading, error, empty, dan success states.
-- Jangan mengubah build config atau routing strategy tanpa alasan dan persetujuan.
+## 8. API, database, and Supabase
 
-## 7. Integrasi API dan Supabase
+Understand request/response contracts, error patterns, validation, server-side authorization, timeout/retry/pagination/rate limits, and cancellation. Supabase is optional. If present, assess RLS and relevant Auth/Database/Storage/Edge Function/Realtime use. Remote schema, data, RLS, function, or project changes require separate explicit approval. Without remote access, limit claims to repository-visible code/config.
 
-- Pahami kontrak request/response dan pola error yang sudah ada.
-- Jangan hardcode credential.
-- Terapkan validasi dan authorization di server/trust boundary; client-side checks bukan pengganti authorization.
-- Perhatikan timeout, retry yang aman, pagination, rate limits, dan cancellation.
-- Untuk Supabase, periksa apakah operasi client-side dilindungi RLS dan policy yang sesuai.
-- Jangan mengubah schema, migration, RLS policy, Edge Function, atau data tanpa approval khusus.
-- Bila tidak ada akses remote, batasi klaim pada source/config yang tersedia.
+## 9. Verification
 
-## 8. Verifikasi
+Use project-supported formatting/lint, type-check, unit/integration/e2e tests, build, and acceptance checks. Before commands, verify they are documented and consider filesystem/network/secrets/service side effects; obtain additional approval for unsafe state changes.
 
-Pilih pemeriksaan yang sesuai dan tersedia:
-- Format/lint.
-- Type-check.
-- Unit/integration/e2e tests.
-- Build production.
-- Pemeriksaan manual berbasis acceptance criteria.
-- Review diff dan status repository.
-
-Sebelum menjalankan command:
-- Pastikan command berasal dari manifest/dokumentasi proyek atau telah diverifikasi.
-- Pertimbangkan apakah command dapat mengubah file, mengakses jaringan, memakai secrets, atau memengaruhi layanan.
-- Minta approval bila ada risiko perubahan state atau akses eksternal yang tidak tercakup.
-
-Catat hasil dengan status:
-- Passed.
-- Failed.
-- Skipped (dengan alasan).
-- Not run (dengan alasan).
-
-Jangan menyatakan test passed jika hanya membaca konfigurasi atau meninjau kode.
-
-## 9. Review sebelum selesai
-
-Periksa:
-- Diff hanya berisi perubahan yang disetujui.
-- Tidak ada secret, debug output, atau file sementara yang tidak disengaja.
-- Error handling dan edge cases ditangani.
-- Dokumentasi dan tipe sesuai perubahan.
-- Tidak ada perubahan tidak terkait.
-- Acceptance criteria terpenuhi atau kekurangannya dinyatakan.
+Record Passed, Failed, Skipped, or Not run with reasons. Review final diff for scope, secrets, debug output, edge cases, docs, and regressions.
 
 ## 10. Completion report
 
-Laporkan:
-1. Ringkasan perubahan.
-2. File yang dibuat/diubah/dihapus.
-3. Keputusan teknis penting.
-4. Pemeriksaan yang dijalankan dan hasilnya.
-5. Pemeriksaan yang tidak dijalankan dan alasannya.
-6. Commit/PR reference jika benar-benar dibuat dan terverifikasi.
-7. Risiko atau pekerjaan tersisa.
-
-Jangan melakukan merge, deployment, atau release kecuali tindakan tersebut secara terpisah disetujui.
+Report summary, specialists used, changed paths, key decisions, API/schema impact, checks and exact outcomes, skipped checks and reasons, commit/PR references only if created and verified, risks, and remaining work. Do not merge, deploy, or release without separate approval.
