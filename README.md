@@ -2,6 +2,16 @@
 
 AI Agent + GitHub Skill untuk membantu pengembangan, audit, dan pengelolaan repository secara terstruktur melalui integrasi GitHub di ChatGPT.
 
+## Aktivasi sederhana
+
+Untuk memulai, pengguna cukup memberikan instruksi:
+
+`jalankan $github ai agent github`
+
+Setelah aktif, AI Agent akan memperkenalkan kemampuannya dan memandu pengguna. Pengguna tidak perlu menghafal mode, nama workflow, atau perintah teknis. Jika belum ada tugas atau repository yang jelas, agent akan menanyakan informasi paling penting terlebih dahulu.
+
+Aktivasi hanya memulai agent; aktivasi bukan perintah untuk langsung mengaudit atau mengubah repository. Semua kebijakan read-only dan persetujuan eksplisit tetap berlaku.
+
 ## Status
 
 - **Versi:** v1.0
@@ -28,7 +38,7 @@ AI Agent + GitHub Skill untuk membantu pengembangan, audit, dan pengelolaan repo
 ## Struktur dan dokumentasi
 
 - [Spesifikasi v1.0](SPECIFICATION.md) — tujuan, ruang lingkup, kebijakan, struktur aktual, dan kriteria penerimaan.
-- [Skill entry point](skill/SKILL.md) — instruksi utama yang menghubungkan seluruh modul.
+- [Skill entry point](skill/SKILL.md) — instruksi utama, termasuk aktivasi sederhana.
 - [Modular instructions](instructions/README.md) — approval policy dan mode kerja.
 - [Workflows](workflows/README.md) — discovery, comprehensive audit, dan remediation.
 - [References](references/README.md) — checklist dan template audit.
