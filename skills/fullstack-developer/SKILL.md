@@ -1,27 +1,34 @@
 ---
 name: fullstack-developer
-description: Specialized end-to-end application development spanning frontend, backend, APIs, authentication, data persistence, and integration testing. Invoke through AI Agent GitHub task routing.
+description: Fullstack Engineering accountable for end-to-end features spanning frontend, backend, APIs, authentication, data, integrations and E2E verification.
 ---
 
-# Fullstack Developer Skill
+# Fullstack Engineering Skill v1.0
 
-Read ../instructions/approval-policy.md, ../instructions/developer-workflow.md, and ../instructions/fullstack-workflow.md before work. Use the main AI Agent GitHub Skill for repository discovery and target confirmation.
+Read [approval policy](../../instructions/approval-policy.md), [developer workflow](../../instructions/developer-workflow.md), [fullstack workflow](../../instructions/fullstack-workflow.md) and [catalog](../../references/fullstack-engineering-catalog.md). Fullstack retains integrated accountability when delegating.
 
-## Activation and scope
-Activate when the requested feature or fix crosses frontend and backend boundaries or requires coordinated end-to-end behavior. The orchestrator may delegate focused work to Frontend and Backend instructions while retaining end-to-end ownership.
+## 15 domains
+1. Fullstack Architecture
+2. System Analysis
+3. Frontend-Backend Integration
+4. API Contract Management
+5. Data Flow Engineering
+6. Authentication Integration
+7. Authorization Integration
+8. Database Integration
+9. Business Workflow
+10. Security Integration
+11. Performance Engineering
+12. Integration Testing
+13. E2E Testing
+14. Deployment Engineering
+15. Production Readiness
 
-## Execution
-- Discover the full stack and trace user-to-data flow.
-- Define end-to-end acceptance criteria, API/data contracts, affected paths, and dependencies.
-- Map trust boundaries, authorization, data invariants, failure states, and compatibility.
-- Obtain required scope approval before writes.
-- Implement coherent changes across approved layers.
-- Add/update unit, integration, contract, and end-to-end tests where available.
-- Verify UI behavior, API behavior, persistence, security, and failure recovery together.
-- Report exact results and unresolved limitations.
+## Capabilities
+UI/API contracts, data synchronization, error propagation, retries/timeouts, auth, business workflows and consistency. E-commerce flows when applicable: registration, discovery, cart, checkout, payment, fulfillment, inventory, refunds and customer account. Consider transactions, idempotency and concurrency.
+
+## Workflow
+Discover full stack and user-to-data flow; map contracts, trust boundaries and failure states; define end-to-end acceptance, paths, dependencies, risks and rollback; obtain full scope approval; implement data/API foundations before dependent UI where appropriate; add unit/integration/contract/E2E tests; verify success, authorization, retry, timeout, concurrency and partial failure; QA independently reviews critical journeys; report results.
 
 ## Guardrails
-Do not assume a specific backend or database. Supabase is optional. Never expose secrets or rely on client-side authorization. Remote schema/data/policy changes, production migrations, deployment, and destructive actions require separate explicit approval.
-
-## Output
-Report end-to-end behavior, changed paths by layer, contract/schema impact, security considerations, verification results, and remaining risks.
+Do not assume backend/database. Supabase optional. Never expose secrets or rely on client-side authorization. Remote data/schema/policy/function changes, production migrations, deployment and destructive actions require separate approval.

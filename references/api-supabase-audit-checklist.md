@@ -1,48 +1,33 @@
-# API and Supabase Integration Audit Checklist
+# API, Backend and Supabase Audit Checklist v1.2
 
-## Scope
-Inventarisasi seluruh integrasi yang ditemukan: REST/GraphQL/RPC, webhook, SDK pihak ketiga, Supabase, dan service internal. Bedakan bukti repository dari pemeriksaan layanan jarak jauh. Supabase bersifat opsional.
+Supabase is optional. Distinguish repository evidence from remote project evidence. For each relevant domain record Reviewed, Finding, Not Verified or Not Applicable.
 
-Untuk setiap domain gunakan coverage status **Reviewed**, **Finding**, **Not Verified**, atau **Not Applicable**. Jelaskan alasan untuk Not Applicable dan kebutuhan pemeriksaan lanjutan untuk Not Verified.
+## API and integrations
+- [ ] REST/GraphQL/RPC/webhooks, endpoints, SDKs and call sites mapped.
+- [ ] Request/response schemas, validation, serialization and versioning.
+- [ ] Authentication vs authorization for each protected operation.
+- [ ] Pagination, rate limits, quotas, idempotency, timeout, retry/backoff and cancellation.
+- [ ] Stable errors, webhook signatures/replay protection and failure recovery.
+- [ ] Sensitive data flow and third-party exposure mapped.
 
-## 1. Integration inventory
-- [ ] Base URLs, endpoint paths, SDKs, generated clients, and call sites dipetakan.
-- [ ] Authentication mechanism, credential source, dan trust boundaries diidentifikasi.
-- [ ] Request/response schemas, serialization, timeout, retry, dan cancellation ditinjau.
-- [ ] Environment variable names dicatat tanpa menampilkan nilainya.
-- [ ] Webhook signature verification dan replay protection diperiksa bila relevan.
-- [ ] Data classification, personal/sensitive data flow, dan third-party exposure dicatat.
+## Backend security and data
+- [ ] Input validation, output encoding, safe query patterns and server authorization.
+- [ ] Injection, SSRF, CSRF, CORS, IDOR, mass assignment and path traversal considered.
+- [ ] Secrets are not exposed or logged.
+- [ ] Schema normalization, keys, constraints, indexes and query plans.
+- [ ] Transactions, isolation, concurrency, migrations, rollback and recovery.
+- [ ] Tenant isolation, least privilege and observability.
 
-## 2. API security and reliability
-- [ ] Authentication dibedakan dari authorization pada setiap operasi.
-- [ ] Server-side authorization diterapkan; client checks tidak dianggap proteksi.
-- [ ] Input validation, output encoding, dan schema validation ditinjau.
-- [ ] Rate limiting, quotas, abuse controls, dan pagination diperiksa.
-- [ ] CORS, CSRF, SSRF, injection, mass assignment, dan insecure direct object reference dipertimbangkan sesuai konteks.
-- [ ] Error responses tidak membocorkan stack trace, secrets, atau data internal.
-- [ ] TLS, timeout, retry/backoff, idempotency, dan failure handling ditinjau.
-- [ ] Logging menghindari token, credential, dan payload sensitif.
+## Supabase repository checks
+- [ ] Config, project references, client initialization and env names.
+- [ ] Publishable/anon vs service-role/secret key separation.
+- [ ] Auth providers, JWT/session, redirects and logout.
+- [ ] Postgres schema, migrations, functions, triggers and generated types.
+- [ ] RLS enabled where expected; policies cover CRUD, claims, ownership and tenant isolation.
+- [ ] Storage buckets, object paths, upload limits and policies.
+- [ ] Edge Functions: Deno, JWT verification, CORS, validation, secrets and errors.
+- [ ] Realtime publication, channel authorization and cleanup.
+- [ ] PostgREST/RPC, schema drift and local/deployed config.
 
-## 3. Supabase repository-level checks
-Lakukan meskipun koneksi Supabase tidak diaktifkan, sepanjang bukti tersedia di repository.
-- [ ] Supabase project references/configuration dan client initialization diidentifikasi.
-- [ ] Pemisahan anon/publishable key dan service-role/secret key dipastikan; secret key tidak boleh berada di browser.
-- [ ] Auth flows, session persistence, redirect URLs, and logout behavior ditinjau.
-- [ ] Database access paths dan query usage dipetakan.
-- [ ] RLS migrations/policies yang ada di repository ditinjau untuk coverage dan least privilege.
-- [ ] Storage buckets, object access, upload constraints, dan policies ditinjau.
-- [ ] Edge Functions, JWT verification settings, CORS, validation, dan error handling ditinjau.
-- [ ] Realtime subscriptions, channel authorization, cleanup, dan data exposure ditinjau.
-- [ ] Migration ordering, seed data, generated types, and schema drift risks dicatat.
-- [ ] Supabase local config dan deployment config dibandingkan bila keduanya tersedia.
-
-## 4. Optional connected-project review
-Hanya jika pengguna memilih audit repository + Supabase dan koneksi/tool yang sesuai tersedia:
-- [ ] Pastikan project target yang dipilih pengguna sebelum membaca.
-- [ ] Gunakan operasi read-only untuk memeriksa Auth, database schema/policies, Storage, Functions, dan konfigurasi yang diizinkan.
-- [ ] Catat bagian yang tidak dapat diakses karena permission atau keterbatasan tool.
-- [ ] Jangan mengubah schema, data, policy, function, secrets, atau settings selama audit.
-- [ ] Jangan menyatakan remote project telah diperiksa jika hanya membaca repository.
-
-## 5. Findings and limitations
-Gunakan coverage status yang ditetapkan di atas untuk setiap domain. Setiap temuan harus mengidentifikasi sumbernya **Repository evidence**, **Connected project evidence**, atau **External observation**. Catat finding verification status dan remediation disposition secara terpisah sesuai [finding template](finding-template.md). Jangan menebak konfigurasi remote dari file lokal. Redaksi semua credential. Tandai area yang tidak diperiksa secara eksplisit.
+## Optional connected-project review
+Only after user selects project and read permissions exist. Confirm project identity; inspect only authorized schema/RLS/Auth/Storage/Functions/settings; record inaccessible areas; do not mutate remote resources. Never infer remote state from local source or request credentials in chat.

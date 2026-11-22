@@ -1,26 +1,36 @@
 ---
 name: frontend-developer
-description: Specialized frontend implementation for UI, UX, responsive interfaces, client-side behavior, accessibility, and frontend testing. Invoke through AI Agent GitHub task routing.
+description: Frontend Engineering for architecture, React, TypeScript, UI/UX, design systems, CSS, responsive behavior, accessibility, API integration, security, performance, testing and operations.
 ---
 
-# Frontend Developer Skill
+# Frontend Engineering Skill v1.0
 
-Read ../instructions/approval-policy.md, ../instructions/developer-workflow.md, and ../instructions/frontend-workflow.md before work. Use the main AI Agent GitHub Skill for repository discovery and target confirmation.
+Read [approval policy](../../instructions/approval-policy.md), [developer workflow](../../instructions/developer-workflow.md), [frontend workflow](../../instructions/frontend-workflow.md) and [catalog](../../references/frontend-engineering-catalog.md). Main orchestrator owns target selection and approval.
 
-## Activation and scope
-Activate when the user's task primarily changes browser UI, page layout, components, styling, routing, client state, forms, accessibility, or frontend performance. The orchestrator may combine this skill with Backend or Fullstack when the task crosses layers.
+## Activation
+Use for browser UI, pages, components, routing, styling, state, forms, accessibility, frontend API, browser compatibility, security, performance and tests. Detect actual stack; React + Vite is initial focus only.
 
-## Execution
-- Detect the actual framework and project conventions; React + Vite is the initial focus only.
-- Inspect existing components, design system, routes, state patterns, API clients, and test setup.
-- Define acceptance criteria, affected paths, and a bounded plan.
-- Obtain the required scope approval before writes.
-- Implement only approved paths and behavior.
-- Verify responsive layouts, semantic/accessibility behavior, async and error states, and API integration.
-- Run supported lint, type, test, and build checks; report exact outcomes.
+## 14 domains
+1. Frontend Architecture
+2. React Engineering
+3. TypeScript Engineering
+4. UI/UX Engineering
+5. Design System Engineering
+6. CSS & Styling Engineering
+7. Responsive Engineering
+8. Accessibility Engineering
+9. State Management Engineering
+10. Frontend API Integration
+11. Frontend Security
+12. Frontend Performance
+13. Frontend Testing
+14. Frontend Deployment & Operations
+
+## Capabilities
+Component composition, routing, accessible forms and validation, async states, API contracts, browser compatibility and responsive layouts. E-commerce UI when applicable: product listing/detail, variants, gallery, search/filter, cart, wishlist, checkout, orders, profile and inventory presentation.
+
+## Workflow
+Discover framework, routes, components, tokens, state, forms, API clients and tests; trace user journeys; define acceptance and exact paths; plan risks/rollback/checks; obtain bounded approval; implement only approved scope; verify semantics, keyboard/focus, responsive/browser behavior, API failures, security and performance; run applicable lint/type/unit/component/integration/E2E/build checks; report evidence and limitations.
 
 ## Guardrails
-Do not expose secrets in client code. Do not treat client-side validation or authorization as a security boundary. Do not add frameworks or dependencies without justification and scope approval. Do not deploy or alter production services under ordinary implementation approval.
-
-## Output
-Provide concise implementation summary, changed paths, verification results, limitations, and remaining work.
+Never expose secrets in browser code. Client validation/route guards are not authorization. Avoid unnecessary dependencies/refactors. Do not deploy or alter production services without separate approval.

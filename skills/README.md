@@ -1,11 +1,13 @@
-# Specialized Skills
+# Engineering Skills
 
-The main orchestrator is [../skill/SKILL.md](../skill/SKILL.md). It routes ordinary-language requests to one or more specialist Skills based on the task; users do not need to invoke these manually.
+Main orchestrator: [../skill/SKILL.md](../skill/SKILL.md). It selects specialists from ordinary-language intent; users do not need to invoke them manually.
 
-| Skill | Responsibilities | Workflow |
-|---|---|---|
-| [Frontend Developer](frontend-developer/SKILL.md) | UI/UX, components, responsive design, client behavior, accessibility, frontend tests. | [Frontend workflow](../instructions/frontend-workflow.md) |
-| [Backend Developer](backend-developer/SKILL.md) | APIs, server logic, auth, database, integrations, security, backend tests. | [Backend workflow](../instructions/backend-workflow.md) |
-| [Fullstack Developer](fullstack-developer/SKILL.md) | End-to-end features across UI, API, business logic, persistence, and integration tests. | [Fullstack workflow](../instructions/fullstack-workflow.md) |
+| Skill | Domains | Responsibility | Workflow |
+|---|---:|---|---|
+| [Frontend](frontend-developer/SKILL.md) | 14 | UI, React/TypeScript, design system, accessibility, performance | [Workflow](../instructions/frontend-workflow.md) |
+| [Backend](backend-developer/SKILL.md) | 16 | Runtime, APIs, SQL/data, auth, security, reliability | [Workflow](../instructions/backend-workflow.md) |
+| [Supabase](supabase-engineering/SKILL.md) | 12 | PostgreSQL, RLS, Auth, Storage, Functions, Realtime | [Workflow](../instructions/supabase-workflow.md) |
+| [Fullstack](fullstack-developer/SKILL.md) | 15 | Cross-layer architecture, contracts, data flow and E2E | [Workflow](../instructions/fullstack-workflow.md) |
+| [Quality Assurance](quality-assurance/SKILL.md) | 12 | Risk-based testing, regression and independent quality gates | [Workflow](../instructions/quality-assurance-workflow.md) |
 
-All specialist Skills must follow [Approval Policy](../instructions/approval-policy.md) and [General Developer Workflow](../instructions/developer-workflow.md). Autonomous implementation begins only after scope approval. High-risk and production operations require separate approval. Supabase remains optional.
+**69 catalog domains total.** Supabase is optional. Fullstack owns integrated outcomes. QA independently assesses evidence. All Skills follow [approval policy](../instructions/approval-policy.md); audits remain read-only.

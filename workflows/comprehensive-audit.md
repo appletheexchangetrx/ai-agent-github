@@ -1,45 +1,22 @@
-# Workflow: Comprehensive Repository Audit
-
-## Objective
-Melakukan audit menyeluruh dalam satu putaran terstruktur sebelum menyusun audit bertahap atau remediation.
+# Comprehensive Repository Audit Workflow v1.2
 
 ## Preconditions
-- Discovery selesai menggunakan [repository discovery](repository-discovery.md).
-- Repository/ref dan commit SHA target tercatat.
-- Scope audit dan batas akses disepakati.
-- Jika Supabase relevan, pilihan repository-only atau repository + connected project telah ditentukan.
-- Mode audit tetap read-only.
+Run [repository discovery](repository-discovery.md); confirm repo/ref/commit, scope/access and mode. Follow [audit instructions](../instructions/audit-comprehensive.md). Audit is read-only.
 
-## Audit sequence
-1. **Architecture:** struktur, entry points, boundaries, coupling, configuration, and documentation.
-2. **Stack-specific quality:** gunakan [React + Vite checklist](../references/react-vite-audit-checklist.md) jika stack cocok; untuk stack lain, audit berdasarkan teknologi yang ditemukan.
-3. **Security:** secrets, authn/authz, input/output boundaries, session handling, permissions, data exposure, and security-sensitive configuration.
-4. **Dependencies:** direct/transitive dependencies where evidence exists, lockfile consistency, outdated/unsupported packages, known vulnerabilities only when verified, and supply-chain risk.
-5. **API and integrations:** gunakan [API/Supabase checklist](../references/api-supabase-audit-checklist.md); map trust boundaries, contracts, errors, retries, webhooks, and external dependencies.
-6. **Supabase (conditional):** audit repository evidence always when relevant; inspect connected project only when user opts in and authorized read access is available.
-7. **Quality and tests:** inspect test design, lint/typecheck/build scripts, coverage evidence, and critical flows. Run checks only if runtime/tool permissions allow and execution is safe.
-8. **CI/CD and operations:** inspect workflows, deployment configuration, environment handling, migrations, release controls, observability, and rollback documentation.
-9. **Production readiness:** evaluate resilience, accessibility/performance where applicable, backup/recovery evidence, monitoring, documentation, and operational ownership.
-10. **Synthesize findings:** deduplicate, validate evidence, assign severity/status/confidence, and map dependencies.
-11. **Prioritize roadmap:** group remediation into ordered phases without applying fixes.
-12. **Deliver report:** complete [audit report template](../references/audit-report-template.md), including exclusions and checks not run.
+## Sequence
+1. Discover metadata, tree, docs, manifests, source, tests, CI/CD and deployment.
+2. Detect actual stack, runtime, database and integrations.
+3. Review Frontend 14-domain catalog when applicable.
+4. Review Backend 16-domain catalog when applicable.
+5. Review Supabase 12-domain catalog when relevant; repository-only mode is valid, remote review optional.
+6. Review Fullstack 15-domain catalog for integrated workflows.
+7. Review QA 12-domain catalog for test strategy and evidence.
+8. Assess cross-cutting dependencies, secrets, CI permissions, privacy, observability and recovery.
+9. Validate and deduplicate findings; distinguish facts and assumptions.
+10. Assign P0-P4 severity, finding verification and remediation disposition separately.
+11. Record coverage Reviewed/Finding/Not Verified/Not Applicable for every relevant domain.
+12. Deliver [audit report](../references/audit-report-template.md) with evidence, limitations, checks and prioritized roadmap; do not apply fixes.
 
-## Finding quality gate
-For every finding:
-- Use [finding template](../references/finding-template.md).
-- Provide traceable evidence and source type.
-- Separate confirmed fact from suspicion.
-- Explain impact and realistic prerequisites.
-- Do not invent line numbers, CVEs, test outcomes, or remote state.
-- Mark severity and confidence separately.
+Every finding needs ID, severity, evidence, impact, verification status, remediation disposition, recommendation and verification method. Never invent line numbers, CVEs, test output or remote state.
 
-## Completion criteria
-- All relevant domains were considered; N/A has a reason.
-- Repository and ref are unambiguous.
-- Findings and limitations are explicit.
-- Executive summary and remediation priorities are present.
-- No state-changing action was performed.
-- No finding was silently fixed.
-
-## Next step
-Present findings and proposed staged remediation. Any implementation must follow [approved remediation and verification](approved-remediation-verification.md) and the [approval policy](../instructions/approval-policy.md).
+For each approved audit, create a new report in `docs/audit/history/` and update `docs/audit/production-readiness.md` as latest in the audited repository. No 100% coverage claim without explicit domain statuses.

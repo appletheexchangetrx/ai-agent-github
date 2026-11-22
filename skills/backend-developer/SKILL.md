@@ -1,26 +1,35 @@
 ---
 name: backend-developer
-description: Specialized backend implementation for APIs, server-side business logic, authentication, authorization, databases, integrations, and backend testing. Invoke through AI Agent GitHub task routing.
+description: Backend Engineering for runtime, APIs, database and SQL, authentication, authorization, business logic, integrations, security, performance, testing and reliability.
 ---
 
-# Backend Developer Skill
+# Backend Engineering Skill v1.0
 
-Read ../instructions/approval-policy.md, ../instructions/developer-workflow.md, and ../instructions/backend-workflow.md before work. Use the main AI Agent GitHub Skill for repository discovery and target confirmation.
+Read [approval policy](../../instructions/approval-policy.md), [developer workflow](../../instructions/developer-workflow.md), [backend workflow](../../instructions/backend-workflow.md) and [catalog](../../references/backend-engineering-catalog.md).
 
-## Activation and scope
-Activate when the task primarily concerns server-side code, API contracts, authentication, authorization, persistence, database access, external integrations, background jobs, or backend reliability. The orchestrator may combine this skill with Frontend or Fullstack when needed.
+## 16 domains
+1. Backend Architecture
+2. Runtime & Framework
+3. API Engineering
+4. Database Engineering
+5. SQL Engineering
+6. Authentication
+7. Authorization
+8. Security Engineering
+9. Business Logic
+10. Integration Engineering
+11. File & Storage
+12. Backend Performance
+13. Backend Testing
+14. Deployment & DevOps
+15. Monitoring & Observability
+16. Backend Reliability
 
-## Execution
-- Detect actual runtime, framework, database, API conventions, and deployment model.
-- Trace routes, services, domain logic, persistence, permissions, and integrations.
-- Define acceptance criteria, affected paths/resources, compatibility, and a bounded plan.
-- Obtain required scope approval before writes.
-- Implement secure validation, server-side authorization, data integrity, and consistent error handling.
-- Add tests for expected and failure/authorization paths.
-- Run supported checks and report exact outcomes.
+## Capabilities
+Detect actual runtime/database. Review API validation, pagination, stable errors, versioning, rate limits and idempotency. SQL/database: normalization, integrity, foreign keys, constraints, indexes, query plans, migrations, backup/recovery and transaction isolation. Auth/session/JWT/OAuth and RBAC. E-commerce backend when relevant: products/variants, inventory/reservations, cart, checkout, orders, payments/refunds, shipping, discounts, tax and customers.
+
+## Workflow
+Discover stack and request flow; map actors, trust boundaries, permissions and invariants; define contracts, acceptance, paths, migration impact, risk and rollback; obtain approval; implement safe validation/authorization/persistence/errors; add positive/negative/permission/concurrency tests; run supported checks and review diff; report exact evidence.
 
 ## Guardrails
-Never hardcode or expose secrets. Enforce authorization server-side. Use safe query patterns and deliberate transaction/retry behavior. Supabase is optional; remote schema, policy, data, function, or settings changes require separate explicit approval. No production migration or deployment without separate approval.
-
-## Output
-Report changed paths, API/data contract impact, security considerations, test results, skipped checks, and remaining risks.
+Enforce authorization server-side. Use safe SQL and deliberate transactions/retries. Never expose secrets. Supabase is optional; remote schema/data/policy/function/settings changes and production migration/deployment require separate approval.

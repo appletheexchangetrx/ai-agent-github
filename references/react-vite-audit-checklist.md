@@ -1,67 +1,40 @@
-# React + Vite Audit Checklist
+# React + Vite Audit Checklist v1.2
 
-## Purpose and applicability
-Gunakan checklist ini hanya setelah discovery mengonfirmasi React dan Vite. Catat versi, package manager, entry points, build scripts, dan test tooling aktual. Untuk setiap domain, gunakan coverage status **Reviewed**, **Finding**, **Not Verified**, atau **Not Applicable**. Jika Not Applicable, catat alasannya; jika Not Verified, jelaskan pemeriksaan yang masih diperlukan.
+Use only when discovery confirms React + Vite. Record actual versions, package manager, scripts, routes, tests and browser targets. For each relevant domain record Reviewed, Finding, Not Verified or Not Applicable.
 
-## 1. Project structure and architecture
-- [ ] Entry point aplikasi, routing, layout, feature/module boundaries teridentifikasi.
-- [ ] Pemisahan UI, domain/business logic, data access, dan utilities masuk akal.
-- [ ] Komponen memiliki tanggung jawab yang jelas; duplikasi dan komponen terlalu besar dicatat.
-- [ ] Import path, alias, circular dependency, dan dependency direction ditinjau.
-- [ ] Konvensi penamaan, struktur folder, dan konfigurasi konsisten.
-- [ ] Error boundary dan fallback state digunakan pada area yang sesuai.
+## Architecture and React
+- [ ] Entry points, routes, layouts, feature boundaries and data flow mapped.
+- [ ] Component responsibilities, reuse, duplication and dependency direction reviewed.
+- [ ] Hooks rules, effect dependencies/cleanup, state ownership and rerenders reviewed.
+- [ ] Stable list keys, controlled inputs, async cancellation and race handling.
+- [ ] Error boundaries, loading fallbacks and lazy routes assessed.
 
-## 2. React correctness
-- [ ] Hooks dipanggil sesuai Rules of Hooks; dependency effect ditinjau.
-- [ ] State ditempatkan pada level yang tepat; derived state tidak disimpan tanpa alasan.
-- [ ] Keys pada list stabil dan unik.
-- [ ] Controlled/uncontrolled inputs konsisten.
-- [ ] Effect tidak digunakan untuk kalkulasi yang dapat dilakukan saat render.
-- [ ] Context/global state tidak menyebabkan coupling atau rerender yang tidak perlu.
-- [ ] Async effects menangani cancellation/race condition bila relevan.
-- [ ] Suspense, lazy loading, memoization digunakan berdasarkan kebutuhan dan bukti, bukan secara membabi buta.
+## TypeScript and UI
+- [ ] Strictness, unsafe any/casts, nullability and API types reviewed.
+- [ ] Semantic HTML, labels, landmarks, accessible names and error associations.
+- [ ] Keyboard, focus, contrast, reduced motion and assistive technology.
+- [ ] Design tokens, typography, component variants and CSS leakage.
+- [ ] Responsive overflow, touch targets and viewport behavior.
+- [ ] Loading, empty, error, success, disabled and offline states.
 
-## 3. Vite and build configuration
-- [ ] Vite config, plugins, aliases, public assets, dan base path ditinjau.
-- [ ] Mode development/production dan pemuatan environment variables dipahami.
-- [ ] Hanya variabel dengan prefix publik yang sesuai diekspos ke client; tidak ada secret di bundle.
-- [ ] Build output, chunking, asset handling, dan source map policy ditinjau.
-- [ ] Proxy dan CORS development tidak disalahartikan sebagai kontrol keamanan production.
-- [ ] Scripts build, preview, lint, typecheck, dan test dibandingkan dengan konfigurasi aktual.
+## Routing, state, forms and APIs
+- [ ] Deep links, redirects, route guards and not-found behavior.
+- [ ] State ownership, cache invalidation and persistence safety.
+- [ ] Form validation, async errors and server-side validation boundary.
+- [ ] API contracts, cancellation, timeout, retry, pagination and stable errors.
+- [ ] Auth/session expiry and logout behavior.
 
-## 4. UI, accessibility, and UX
-- [ ] Semantic HTML dan landmark digunakan dengan benar.
-- [ ] Navigasi keyboard, focus visibility, label form, dan accessible name diperiksa.
-- [ ] Kontras, ukuran target interaksi, dan reduced-motion dipertimbangkan.
-- [ ] Loading, empty, error, success, dan offline states ditangani.
-- [ ] Layout diuji secara konseptual pada viewport kecil dan besar; overflow dicatat.
-- [ ] Gambar memiliki ukuran/format yang sesuai dan alt text kontekstual.
-- [ ] Interaksi kritis tidak bergantung hanya pada warna, hover, atau pointer.
+## Security and performance
+- [ ] Raw HTML/XSS, URL/redirect, upload and external link handling.
+- [ ] No secrets in client env, public assets or bundle.
+- [ ] Bundle size, route splitting, rendering, network, caching and image optimization.
+- [ ] Core Web Vitals only from actual measurements.
 
-## 5. Performance
-- [ ] Bundle size dan dependency berat diidentifikasi.
-- [ ] Route/feature splitting digunakan bila memberi manfaat.
-- [ ] Render loops, expensive calculations, dan unnecessary rerenders ditinjau.
-- [ ] Data fetching menghindari request berulang dan race conditions.
-- [ ] Caching, pagination/virtualization, dan image optimization dievaluasi.
-- [ ] Core Web Vitals hanya dinilai dari pengukuran yang benar-benar tersedia.
+## Testing and operations
+- [ ] Unit/component/integration/E2E coverage maps to critical journeys.
+- [ ] Tests cover behavior and meaningful failures.
+- [ ] Browser/device support matches project target.
+- [ ] Lint/type/test/build outcomes recorded accurately.
+- [ ] Vite modes, env exposure, base path, proxy, CI and deployment reviewed.
 
-## 6. Security and data handling
-- [ ] Rendering HTML mentah dan penggunaan dangerouslySetInnerHTML ditinjau.
-- [ ] Input/output validation dan encoding dilakukan pada boundary yang tepat.
-- [ ] Auth state, token storage, session expiry, dan logout behavior ditinjau.
-- [ ] Client-side checks tidak dianggap sebagai authorization.
-- [ ] Redirect, URL handling, file upload, dan external links ditinjau.
-- [ ] Secrets tidak berada pada source, public assets, atau client bundle.
-- [ ] Dependency scripts dan package provenance dipertimbangkan.
-
-## 7. Tests and maintainability
-- [ ] Unit/component/integration/e2e test coverage untuk alur kritis dipetakan.
-- [ ] Test menguji perilaku, bukan detail implementasi yang rapuh.
-- [ ] Mock tidak menyembunyikan kontrak integrasi atau error penting.
-- [ ] Lint, typecheck, build, dan test commands dicatat beserta status aktual.
-- [ ] TypeScript strictness dan penggunaan unsafe types ditinjau bila berlaku.
-- [ ] Dokumentasi setup, env example, dan troubleshooting cukup.
-
-## Evidence and result
-Gunakan coverage status yang ditetapkan di atas untuk setiap domain. Catat finding terpisah menggunakan [finding template](finding-template.md), termasuk finding verification status dan remediation disposition. Jangan menyatakan command berhasil jika tidak dijalankan. Lihat [audit report template](audit-report-template.md).
+E-commerce when applicable: listing/detail, variants, gallery, search/filter, cart, wishlist, checkout, orders, profile and inventory presentation. Record evidence; never claim an unrun check passed.

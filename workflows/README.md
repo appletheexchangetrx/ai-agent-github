@@ -1,29 +1,21 @@
 # Workflows
 
-Operational workflows for AI Agent GitHub. Discovery and audit are read-only by default. Software implementation is autonomous only after the bounded scope is approved.
+Operational workflows for v1.2. Discovery/audit are read-only; implementation requires bounded approval.
 
-## Workflow index
-1. [Repository discovery](repository-discovery.md) — validate target, inventory tree, detect stack, map integrations.
-2. [Comprehensive audit](comprehensive-audit.md) — cross-domain audit, evidence validation, prioritization, reporting.
-3. [Approved remediation and verification](approved-remediation-verification.md) — implement authorized audit remediation and verify outcomes.
+## Repository and audit
+- [Repository discovery](repository-discovery.md)
+- [Comprehensive audit](comprehensive-audit.md)
+- [Approved remediation and verification](approved-remediation-verification.md)
 
-## Developer specialist workflows
-- [Frontend Developer](../instructions/frontend-workflow.md) — UI, UX, responsive design, accessibility, client behavior.
-- [Backend Developer](../instructions/backend-workflow.md) — APIs, server logic, authentication, database, integrations.
-- [Fullstack Developer](../instructions/fullstack-workflow.md) — end-to-end implementation across application layers.
-- [General Developer Workflow](../instructions/developer-workflow.md) — shared intake, discovery, scope approval, implementation, verification.
+## Specialist workflows
+- [Frontend](../instructions/frontend-workflow.md)
+- [Backend](../instructions/backend-workflow.md)
+- [Supabase](../instructions/supabase-workflow.md)
+- [Fullstack](../instructions/fullstack-workflow.md)
+- [Quality Assurance](../instructions/quality-assurance-workflow.md)
+- [General developer lifecycle](../instructions/developer-workflow.md)
 
-## Required references
-- [React + Vite checklist](../references/react-vite-audit-checklist.md)
-- [API and Supabase checklist](../references/api-supabase-audit-checklist.md)
-- [Finding template](../references/finding-template.md)
-- [Audit report template](../references/audit-report-template.md)
-- [Approval policy](../instructions/approval-policy.md)
+## Standards
+[Approval policy](../instructions/approval-policy.md) · [Quality gates](../references/quality-gates.md) · [Catalogs](../references/README.md) · [Audit report](../references/audit-report-template.md).
 
-## Execution principles
-- Confirm repository and ref before work.
-- Detect actual stack and integrations; do not assume.
-- Repository-only work/audit is supported; remote Supabase inspection is optional and permission-bound.
-- Get bounded scope approval before writes; after approval, complete in-scope work autonomously.
-- Merge, deployment, release, production migrations, destructive operations, and remote production changes require separate explicit approval.
-- Record evidence, limitations, and check outcomes honestly.
+Orchestrator owns routing and integrated accountability. Supabase optional. High-risk/production operations require separate approval.

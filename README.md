@@ -1,63 +1,27 @@
-# AI Agent GitHub
+# AI Agent GitHub v1.2
 
-AI Agent + GitHub Skill untuk pengembangan software, audit menyeluruh, dan pengelolaan repository melalui integrasi GitHub di ChatGPT.
+Modular ChatGPT + GitHub agent for software engineering, comprehensive audit, QA and repository operations.
 
-## Aktivasi sederhana
-
+## Activation
 `jalankan $github ai agent github`
 
-Setelah aktif, agent mengambil daftar repository yang dapat diakses, meminta pengguna memilih target dan branch/ref, lalu menanyakan atau menjalankan tujuan yang dinyatakan. Aktivasi tidak otomatis memicu audit atau perubahan.
+The single orchestrator lists accessible repositories, asks the user to select a repository and branch/ref, inspects actual state, then routes the requested task. Activation alone does not audit or modify anything. This Skill repository is not the default work target.
 
-Repository `appletheexchangetrx/ai-agent-github` adalah sumber Skill, bukan target kerja default. Gunakan sebagai target hanya jika dipilih secara eksplisit. Jika listing GitHub gagal atau tidak lengkap, jelaskan keterbatasannya dan jangan mengarang daftar.
+## Architecture
+Five Skills: Frontend (14 domains), Backend (16), Supabase (12), Fullstack (15), QA (12) — **69 catalog domains** total. Main entry point: [skill/SKILL.md](skill/SKILL.md). React + Vite is the initial frontend focus; detect actual stack. Supabase is optional.
 
-## Status
+## Operating rules
+- Discovery and audit are read-only; findings are not silently remediated.
+- Before writes, present exact paths/resources, behavior, risks, rollback and verification; wait for explicit scope approval.
+- After approval, complete all in-scope work autonomously without per-file approval.
+- Stop for scope expansion, concurrent conflicts or separate high-risk approval.
+- Merge, deployment, release, production migrations, destructive data operations, secrets changes and remote Supabase mutations require separate explicit approval.
+- Report only checks and outcomes actually verified.
 
-- **Versi:** v1.1
-- **Branch implementasi:** main
-- **Framework fokus awal:** React + Vite, dengan deteksi stack aktual.
-- **Supabase:** opsional.
-- **Model eksekusi:** autonomous setelah persetujuan scope; tindakan berisiko tinggi tetap memiliki approval gate tersendiri.
-- **Pengujian runtime Skill:** harus dilakukan pengguna; dokumentasi dan repository checks tidak membuktikan integrasi runtime ChatGPT telah diuji.
+## Audit reporting
+For each approved audit, create a historical report in `docs/audit/history/` and update `docs/audit/production-readiness.md` as latest in the audited application repository. Do not claim 100% coverage unless all relevant catalog domains have explicit status.
 
-## Kapabilitas
+## Documentation
+[Specification](SPECIFICATION.md) · [Skills](skills/README.md) · [Workflows](workflows/README.md) · [References](references/README.md) · [Architecture](docs/architecture/README.md) · [Roadmap](docs/implementation/README.md).
 
-1. **Frontend Developer** — UI/UX, React, responsive design, component architecture, client state, accessibility, dan frontend testing.
-2. **Backend Developer** — API, server-side business logic, authentication, authorization, database, integrations, security, dan backend testing.
-3. **Fullstack Developer** — implementasi end-to-end lintas UI, API, business logic, database, dan integration testing.
-4. **Auditor** — comprehensive audit arsitektur, kualitas kode, keamanan, konfigurasi, dependensi, API, dan integrasi.
-5. **Repository Manager** — operasi file dan GitHub sesuai otorisasi.
-
-Orchestrator memilih satu atau beberapa spesialisasi secara otomatis berdasarkan tujuan pengguna. Pengguna tidak perlu menghafal mode atau nama workflow.
-
-## Autonomous execution policy
-
-- Agent melakukan discovery, analisis, pemilihan spesialisasi, perencanaan, implementasi dalam scope yang disetujui, testing, debugging, dan verifikasi secara mandiri.
-- Sebelum batch implementasi, agent menyajikan target repository/ref, daftar file/resource, perubahan, dampak, risiko, rollback, dan pemeriksaan; pengguna menyetujui scope tersebut.
-- Setelah scope disetujui, agent boleh menyelesaikan seluruh perubahan dalam scope tanpa meminta persetujuan per file.
-- Perubahan material di luar scope membutuhkan persetujuan tambahan.
-- Audit tetap read-only; temuan audit tidak otomatis diperbaiki.
-- Merge, deployment, release, production migration, destructive data operations, secrets changes, dan tindakan produksi/berisiko tinggi memerlukan persetujuan khusus.
-- Semua hasil tool dan state repository harus diverifikasi. Jangan mengklaim test atau perubahan berhasil tanpa bukti.
-
-## Supabase optional
-
-Repository-only development/audit tetap dapat dilakukan tanpa koneksi Supabase. Jika Supabase ditemukan dan koneksi diaktifkan, periksa hanya project yang dipilih/diizinkan. Tanpa koneksi, klaim dibatasi pada source/config yang tersedia di repository. Perubahan remote schema, data, RLS, functions, atau settings membutuhkan approval khusus.
-
-## Dokumentasi
-
-- [Spesifikasi v1.1](SPECIFICATION.md)
-- [Main Skill entry point](skill/SKILL.md)
-- [Modular instructions](instructions/README.md)
-- [Specialized Skills](skills/README.md)
-- [Workflows](workflows/README.md)
-- [Audit references](references/README.md)
-
-## Status tahapan
-
-- [x] Baseline v1.0 dan instruksi modular.
-- [x] Frontend, Backend, dan Fullstack specialization v1.1.
-- [x] Autonomous scope approval dan execution policy.
-- [x] Dokumentasi index dan cross-reference.
-- [ ] Pengujian operasional oleh pengguna.
-
-Status implementasi dokumentasi tidak menyatakan bahwa runtime Skill, koneksi ChatGPT, atau perilaku operasional telah diuji.
+Run documentation checks with `node scripts/validate-docs.mjs`. This does not test the Skill runtime in ChatGPT; runtime activation and routing remain user-operated validation.

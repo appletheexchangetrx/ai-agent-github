@@ -1,93 +1,59 @@
-# Comprehensive Audit Report
+# Comprehensive Audit Report v1.2
 
-> Salin template ini untuk setiap audit. Hapus instruksi dalam tanda kurung setelah mengisi. Jangan menyimpan secrets atau data sensitif yang tidak diperlukan.
+## Metadata
+- Repository:
+- Branch/ref and commit SHA:
+- Audit date/time:
+- Mode: Repository-only / Repository + connected Supabase
+- Detected stack:
+- Scope, access and limitations:
 
-## 1. Audit metadata
-- **Repository:** owner/repository
-- **Ref:** branch / tag / commit SHA
-- **Audit date:** YYYY-MM-DD (sertakan zona waktu bila diketahui)
-- **Audit mode:** Repository-only / Repository + connected Supabase
-- **Auditor scope:** (cakupan dan batas akses)
-- **Application stack:** (hasil discovery, bukan asumsi)
+## Executive summary
+- Readiness: Ready / Ready with conditions / Not ready / Inconclusive
+- Evidence-based rationale:
+- Finding counts P0/P1/P2/P3/P4:
+- Main priorities:
 
-## 2. Executive summary
-- **Overall readiness:** Ready / Ready with conditions / Not ready / Inconclusive
-- **Risk summary:** (ringkasan berbasis temuan)
-- **Critical / High / Medium / Low / Informational:** (jumlah)
-- **Top priorities:** (maksimal beberapa prioritas utama)
+Readiness is not a security certification.
 
-Readiness adalah penilaian kualitatif berdasarkan bukti yang tersedia, bukan sertifikasi keamanan.
+## Method and scope
+List inspected paths/services, tools and commands actually executed, exclusions, checks not run and whether remote Supabase access was used.
 
-## 3. Scope and methodology
-- Repository areas, integrations, and services included.
-- Files/configuration and tools inspected.
-- Checks or commands actually executed.
-- Explicit exclusions and reasons.
-- Supabase selection and whether remote project access was used.
+## Domain coverage
+Use Reviewed, Finding, Not Verified or Not Applicable with rationale. List every relevant domain by name.
 
-## 4. Coverage matrix
-Gunakan satu status coverage untuk setiap domain:
-- **Reviewed:** domain diperiksa dan tidak ada finding yang dicatat.
-- **Finding:** satu atau lebih finding dicatat pada domain.
-- **Not Verified:** pemeriksaan belum dapat diselesaikan atau bukti tidak cukup.
-- **Not Applicable:** domain tidak relevan; sertakan alasan.
+| Catalog | Domains | Reviewed | Finding | Not Verified | Not Applicable |
+|---|---:|---:|---:|---:|---:|
+| Frontend | 14 | | | | |
+| Backend | 16 | | | | |
+| Supabase | 12 | | | | |
+| Fullstack | 15 | | | | |
+| QA | 12 | | | | |
 
-| Domain | Coverage status | Evidence / notes |
-|---|---|---|
-| Architecture and structure | Reviewed / Finding / Not Verified / Not Applicable | |
-| Code quality and maintainability | | |
-| Security and secrets | | |
-| Dependencies and supply chain | | |
-| React + Vite (if applicable) | | |
-| APIs and external integrations | | |
-| Supabase repository evidence | | |
-| Connected Supabase project | | |
-| Build, tests, lint, typecheck | | |
-| CI/CD and deployment configuration | | |
-| Production readiness and observability | | |
+Do not infer full coverage from aggregate totals.
 
-## 5. Findings
-Urutkan berdasarkan severity, lalu exploitability/impact. Gunakan format [finding template](finding-template.md). Setiap finding harus memiliki ID stabil, finding verification status, dan remediation disposition terpisah.
+## Findings
+For each: ID, title, P0-P4 severity, verification status Verified/Suspected/Not Verified, remediation disposition Open/Accepted Risk/Resolved, evidence/path/line when verifiable, impact, recommendation and post-fix verification.
 
-### Critical
-(Tidak ada / daftar temuan)
-
-### High
-(Tidak ada / daftar temuan)
-
-### Medium
-(Tidak ada / daftar temuan)
-
-### Low and Informational
-(Tidak ada / daftar temuan)
-
-## 6. Verification results
-| Check | Command/tool | Result | Evidence |
+## Checks
+| Check | Command/tool | Result | Evidence/reason |
 |---|---|---|---|
-| Build | | Passed / Failed / Skipped / Not run | |
-| Tests | | Passed / Failed / Skipped / Not run | |
-| Lint | | Passed / Failed / Skipped / Not run | |
-| Type check | | Passed / Failed / Skipped / Not run | |
-| Other | | | |
+| Build/lint/typecheck | | Passed/Failed/Skipped/Not run | |
+| Unit/component | | | |
+| Integration/contract | | | |
+| E2E/regression | | | |
+| Security/performance | | | |
 
-Jangan menulis Passed kecuali pemeriksaan benar-benar dijalankan dan hasilnya tersedia.
+Never mark Passed unless executed.
 
-## 7. Limitations and assumptions
-- Missing permissions, inaccessible services, unavailable runtime, or incomplete source.
-- Unverified assumptions and suspected findings.
-- Remote service state not inspected (if applicable).
+## Strengths and limitations
+Record positive controls, missing permissions, unavailable runtime, incomplete sources, assumptions and remote state not inspected.
 
-## 8. Remediation roadmap
-| Priority | Finding IDs | Proposed action | Dependencies | Approval required |
+## Remediation roadmap
+| Priority | Finding IDs | Action | Dependencies | Approval |
 |---|---|---|---|---|
-| P0 | | | | Yes |
-| P1 | | | | Yes |
-| P2 | | | | Yes |
 
-Roadmap bukan otorisasi perubahan. Ajukan approval terpisah sesuai [approval policy](../instructions/approval-policy.md).
+Roadmap is not authorization to mutate repository/services.
 
-## 9. Conclusion
-Ringkas status kesiapan, risiko residual, keputusan yang perlu diambil, dan langkah audit berikutnya.
-
----
-**Report integrity:** Fakta, indikasi, rekomendasi, coverage status, finding verification status, dan remediation disposition harus dibedakan. Cantumkan ref/commit yang diperiksa agar laporan dapat direproduksi.
+## Conclusion and historical record
+Summarize readiness, residual risk and next decision. For each approved audit, create a new report in `docs/audit/history/` and update `docs/audit/production-readiness.md` as latest in the audited repository. Include audited commit SHA.
