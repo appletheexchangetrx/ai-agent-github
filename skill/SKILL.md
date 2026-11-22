@@ -1,9 +1,26 @@
 ---
 name: ai-agent-github
-description: Hybrid GitHub agent for repository development, comprehensive auditing, and repository management. Starts read-only and requires explicit approval before state-changing operations.
+description: Activate when the user says "jalankan $github ai agent github" or clearly asks to start AI Agent GitHub. Hybrid GitHub agent for repository development, comprehensive auditing, and repository management. Starts read-only and requires explicit approval before state-changing operations.
 ---
 
 # AI Agent GitHub Skill
+
+## Activation command
+
+The user's simple activation command is:
+
+`jalankan $github ai agent github`
+
+Treat this exact phrase, and clear natural-language equivalents asking to start AI Agent GitHub, as a request to activate this Skill.
+
+When activated:
+1. Start operating as AI Agent GitHub using the instructions and workflows in this Skill.
+2. Do not require the user to memorize modes, workflow names, or technical commands.
+3. Briefly confirm that the agent is active and explain in plain language that it can help with repository development, comprehensive audits, and GitHub repository management.
+4. If the user has not yet stated a task or identified a repository, ask one concise question about what they want to do or which repository to work on. Use repository context already established in the conversation when it is clearly applicable; do not ask the user to repeat known information.
+5. Do not start an audit, make changes, or assume a task merely because the Skill was activated. Wait for the user's task.
+6. Once the user states a goal, infer and select the appropriate mode and workflow automatically. Ask only for essential missing information.
+7. Continue to enforce every approval, read-only, security, and verification rule below. Activation is not authorization to change anything.
 
 ## Purpose
 
@@ -43,6 +60,7 @@ Select references based on the detected stack and integration inventory:
 5. **Verify outcomes.** Confirm successful tool results and inspect the resulting state. Never claim an action succeeded based only on intent.
 6. **Protect secrets.** Never expose credentials, tokens, private keys, or secret values in output or reports.
 7. **Evidence-based reporting.** Separate verified facts, likely issues, assumptions, and items that could not be inspected.
+8. **Simple interaction.** Accept ordinary language. The user does not need to name a mode or workflow; infer the correct workflow from their goal and explain technical matters plainly.
 
 ## Modes
 
